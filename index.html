@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Afif Boumendil | Expert en Pilotage de la Performance & Business Intelligence</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+<style>
+
+:root{
+    --primary:#0A2540;
+    --secondary:#118DFF;
+    --accent:#F2C94C;
+    --light:#F5F8FC;
+    --white:#FFFFFF;
+    --text:#1E293B;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    color:var(--text);
+    line-height:1.6;
+    background:#fff;
+}
+
+/* NAVBAR */
+
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:rgba(10,37,64,.95);
+    z-index:999;
+    backdrop-filter:blur(10px);
+}
+
+.nav-container{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 25px;
+}
+
+.logo{
+    color:white;
+    font-size:1.3rem;
+    font-weight:bold;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:var(--accent);
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    background:linear-gradient(135deg,#0A2540,#118DFF);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:100px 20px;
+}
+
+.hero-content{
+    max-width:900px;
+}
+
+.hero img{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    border:5px solid white;
+    object-fit:cover;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:3rem;
+    margin-bottom:10px;
+}
+
+.hero h2{
+    font-size:1.3rem;
+    margin-bottom:20px;
+    font-weight:400;
+}
+
+.hero p{
+    font-size:1.1rem;
+    margin-bottom:30px;
+}
+
+.btn{
+    display:inline-block;
+    padding:14px 25px;
+    margin:10px;
+    border-radius:8px;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.btn-primary{
+    background:var(--accent);
+    color:#000;
+    font-weight:bold;
+}
+
+.btn-secondary{
+    border:2px solid white;
+    color:white;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+/* SECTION */
+
+section{
+    padding:80px 20px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+    color:var(--primary);
+    font-size:2rem;
+}
+
+/* ABOUT */
+
+.about{
+    background:var(--light);
+}
+
+/* CARDS */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card i{
+    color:var(--secondary);
+    font-size:2rem;
+    margin-bottom:15px;
+}
+
+/* TIMELINE */
+
+.timeline{
+    border-left:4px solid var(--secondary);
+    padding-left:25px;
+}
+
+.timeline-item{
+    margin-bottom:40px;
+}
+
+.timeline-item h3{
+    color:var(--primary);
+}
+
+/* SKILLS */
+
+.skill{
+    margin-bottom:20px;
+}
+
+.skill span{
+    font-weight:600;
+}
+
+.bar{
+    background:#ddd;
+    height:10px;
+    border-radius:20px;
+}
+
+.progress{
+    background:var(--secondary);
+    height:100%;
+    border-radius:20px;
+}
+
+/* PORTFOLIO */
+
+.portfolio-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+    gap:25px;
+}
+
+.portfolio-item{
+    overflow:hidden;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+.portfolio-item img{
+    width:100%;
+    display:block;
+}
+
+/* CV ACCESS */
+
+.cv-box{
+    background:var(--primary);
+    color:white;
+    border-radius:20px;
+    padding:40px;
+    text-align:center;
+}
+
+form{
+    display:grid;
+    gap:15px;
+    margin-top:20px;
+}
+
+input, textarea{
+    padding:14px;
+    border:none;
+    border-radius:8px;
+}
+
+/* FOOTER */
+
+footer{
+    background:var(--primary);
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+/* Protection basique */
+
+img{
+    pointer-events:none;
+    user-select:none;
+    -webkit-user-drag:none;
+}
+
+body{
+    user-select:none;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:2rem;
+}
+
+.hero h2{
+    font-size:1rem;
+}
+
+.nav-links{
+    display:none;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+<div class="nav-container">
+<div class="logo">Afif Boumendil</div>
+<div class="nav-links">
+<a href="#apropos">À propos</a>
+<a href="#expertise">Expertise</a>
+<a href="#parcours">Parcours</a>
+<a href="#realisations">Réalisations</a>
+<a href="#contact">Contact</a>
+</div>
+</div>
+</nav>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<img src="photo.jpg" alt="Photo">
+
+<h1>Afif Boumendil</h1>
+
+<h2>
+Expert en Pilotage de la Performance & Business Intelligence |
+Contrôle de Gestion |
+Systèmes d'Information
+</h2>
+
+<p>
+Transformer les données en décisions stratégiques grâce à la Business Intelligence,
+au contrôle de gestion et aux systèmes d'information.
+</p>
+
+<a href="#parcours" class="btn btn-primary">
+Mon parcours
+</a>
+
+<a href="#cv" class="btn btn-secondary">
+Demander l'accès au CV
+</a>
+
+</div>
+
+</section>
+
+<section id="apropos" class="about">
+<div class="container">
+<h2 class="section-title">À propos</h2>
+
+<p style="text-align:center;max-width:900px;margin:auto;">
+Professionnel expérimenté dans le pilotage de la performance,
+l'analyse des données, le contrôle de gestion et la Business Intelligence.
+Mon expertise repose sur la conception de tableaux de bord décisionnels,
+l'automatisation du reporting et l'accompagnement des organisations
+dans leurs projets d'amélioration continue.
+</p>
+
+</div>
+</section>
+
+<section id="expertise">
+<div class="container">
+
+<h2 class="section-title">Domaines d'Expertise</h2>
+
+<div class="grid">
+
+<div class="card">
+<i class="fas fa-chart-line"></i>
+<h3>Pilotage de la Performance</h3>
+<p>KPI, Reporting, Budgets, Analyses stratégiques.</p>
+</div>
+
+<div class="card">
+<i class="fas fa-chart-pie"></i>
+<h3>Business Intelligence</h3>
+<p>Power BI, DAX, Data Visualisation, Reporting.</p>
+</div>
+
+<div class="card">
+<i class="fas fa-coins"></i>
+<h3>Contrôle de Gestion</h3>
+<p>Prix de revient, Rentabilité, Budgets.</p>
+</div>
+
+<div class="card">
+<i class="fas fa-database"></i>
+<h3>Logiciels maîtrisés</h3>
+
+<p>
+Power BI, Excel, SAP, Navision, QAD, ACD,
+Cognos et Selligent.
+</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section id="parcours">
+<div class="container">
+
+<h2 class="section-title">Parcours Professionnel</h2>
+
+<div class="timeline">
+
+<div class="timeline-item">
+<h3>SOGECC</h3>
+<p><strong>Contrôleur de Gestion Senior</strong></p>
+<p>Reporting financier, KPI recouvrement, tableaux de bord décisionnels.</p>
+</div>
+
+<div class="timeline-item">
+<h3>Building Materials and Solutions</h3>
+<p><strong>Responsable Contrôle de Gestion & Responsable SI</strong></p>
+<p>Production, stock, ERP, KPI et budgets.</p>
+</div>
+
+<div class="timeline-item">
+<h3>El-Athir</h3>
+<p><strong>Contrôleur de Gestion</strong></p>
+<p>Prix de revient, analyses financières et tableaux de bord.</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section id="realisations">
+
+<div class="container">
+
+<h2 class="section-title">Réalisations Power BI</h2>
+
+<div class="portfolio-grid">
+
+<div class="portfolio-item">
+<img src="DB1.png" alt="">
+</div>
+
+<div class="portfolio-item">
+<img src="DB2.png" alt="">
+</div>
+
+<div class="portfolio-item">
+<img src="DB3.png" alt="">
+</div>
+
+<div class="portfolio-item">
+<img src="DB4.png" alt="">
+</div>
+
+<div class="portfolio-item">
+<img src="DB5.png" alt="">
+</div>
+</div>
+
+</section>
+
+<section id="cv">
+
+<div class="container">
+
+<div class="cv-box">
+
+<h2>Demande d'accès au CV</h2>
+
+<p>
+Pour protéger mes informations professionnelles,
+l'accès au CV complet est soumis à validation.
+</p>
+
+<form>
+
+<input type="text" placeholder="Nom et prénom" required>
+
+<input type="text" placeholder="Société">
+
+<input type="text" placeholder="Fonction">
+
+<input type="email" placeholder="Email professionnel" required>
+
+<textarea rows="4" placeholder="Motif de votre demande"></textarea>
+
+<button class="btn btn-primary">
+Envoyer la demande
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<div class="container">
+
+<h2 class="section-title">Contact</h2>
+
+<p style="text-align:center;">
+
+Tel : 
+</div>
+<p style="text-align:center;">
+
+Mail : af.boumendil@gmail.com
+</div>
+<p style="text-align:center;">
+
+<p style="text-align:center;">
+
+<a href="https://www.linkedin.com/in/afif-b-990a911a2/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BoFw0AZX9QDCsTFC6ZwKFCQ%3D%3D"
+   target="_blank"
+   style="color:#118DFF;text-decoration:none;font-weight:bold;">
+   Mon profil LinkedIn
+</a>
+</p>
+
+<p style="text-align:center;">
+
+Tunis - Tunisie<br>
+Disponible pour missions, accompagnement,
+reporting, Power BI et pilotage de la performance.
+</p>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 Afif Boumendil | Expert en Pilotage de la Performance & Business Intelligence.
+Tous droits réservés.
+</footer>
+
+<script>
+
+// Blocage clic droit
+document.addEventListener("contextmenu",
+event => event.preventDefault());
+
+// Blocage raccourcis
+document.addEventListener("keydown", function(e){
+
+if(
+e.ctrlKey &&
+(
+e.key === "c" ||
+e.key === "u" ||
+e.key === "s"
+)
+){
+e.preventDefault();
+}
+});
+
+</script>
+
+</body>
+</html>
