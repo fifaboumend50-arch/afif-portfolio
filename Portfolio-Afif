@@ -1,8 +1,11 @@
-Portfolio-Afif/
+afif-portfolio
 │
-├── index.html
-├── photo.jpg
+├── index.html   (Français)
+├── en.html      (English)
+├── ar.html      (العربية)
+├── Photo.jpg
 ├── DB1.png
 ├── DB2.png
-└── DB3.png
-└── DB4.png
+├── DB3.png
+├── DB4.png
+└── DB5.png
