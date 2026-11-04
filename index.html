@@ -61,6 +61,17 @@ nav{
     font-size:1.3rem;
     font-weight:bold;
     white-space:nowrap;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.flag-logo{
+    width:35px;
+    height:25px;
+    object-fit:cover;
+    border-radius:3px;
+    border:1px solid white;
 }
 
 .nav-links{
@@ -383,7 +394,11 @@ html[dir="rtl"] .card i{
 
 <nav>
 <div class="nav-container">
-<div class="logo">Afif Boumendil</div>
+
+<div class="logo">
+    <img src="Drapeau.jpg" alt="Tunisie" class="flag-logo">
+    Afif Boumendil
+</div>
 
 <div class="lang-switcher">
 <button class="lang-btn" data-lang="fr">FR</button>
