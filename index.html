@@ -131,11 +131,11 @@ nav{
     align-items:center;
     justify-content:center;
     text-align:center;
-    padding:100px 20px;
+    padding:120px 20px 80px 20px;
 }
 
 .hero-content{
-    max-width:900px;
+    max-width:950px;
 }
 
 .hero img{
@@ -152,16 +152,38 @@ nav{
     margin-bottom:10px;
 }
 
+/* AMÉLIORATION DU TEXTE HERO */
 .hero h2{
-    font-size:1.3rem;
-    margin-bottom:20px;
+    font-size:1.35rem;
+    margin-bottom:25px;
+    font-weight:500;
+    line-height:1.5;
+    color:#E2E8F0;
+}
+
+.hero h2 span{
+    display:block;
+    font-size:0.85em;
     font-weight:400;
+    opacity:0.9;
+    margin-top:5px;
 }
 
 .hero p{
-    font-size:1.1rem;
-    margin-bottom:30px;
+    font-size:1.15rem;
+    max-width:800px;
+    margin:0 auto 35px auto;
+    line-height:1.7;
+    color:#CBD5E1;
+    font-weight:300;
 }
+
+.highlight{
+    color:var(--accent);
+    font-weight:600;
+}
+
+/* FIN AMÉLIORATION HERO */
 
 .btn{
     display:inline-block;
@@ -359,6 +381,10 @@ html[dir="rtl"] .card i{
 }
 
 .hero h2{
+    font-size:1.1rem;
+}
+
+.hero p{
     font-size:1rem;
 }
 
@@ -425,14 +451,12 @@ html[dir="rtl"] .card i{
 <h1 data-i18n="hero_name">Afif Boumendil</h1>
 
 <h2 data-i18n="hero_title">
-Expert en Pilotage de la Performance & Business Intelligence |
-Contrôle de Gestion |
-Systèmes d'Information
+    Expert en Pilotage de la Performance & Business Intelligence
+    <span>Contrôle de Gestion | Systèmes d'Information</span>
 </h2>
 
 <p data-i18n="hero_desc">
-Transformer les données en décisions stratégiques grâce à la Business Intelligence,
-au contrôle de gestion et aux systèmes d'information.
+    Je transforme les données complexes en tableaux de bord stratégiques interactifs et en <span class="highlight">décisions pertinentes</span> pour accélérer la performance.
 </p>
 
 <a href="#parcours" class="btn btn-primary" data-i18n="hero_btn1">
@@ -674,8 +698,8 @@ const translations = {
     nav_portfolio: "Réalisations",
     nav_contact: "Contact",
     hero_name: "Afif Boumendil",
-    hero_title: "Expert en Pilotage de la Performance & Business Intelligence | Contrôle de Gestion | Systèmes d'Information",
-    hero_desc: "Transformer les données en décisions stratégiques grâce à la Business Intelligence, au contrôle de gestion et aux systèmes d'information.",
+    hero_title: "Expert en Pilotage de la Performance & Business Intelligence\nContrôle de Gestion | Systèmes d'Information",
+    hero_desc: "Je transforme les données complexes en tableaux de bord stratégiques interactifs et en <span class='highlight'>décisions pertinentes</span> pour accélérer la performance.",
     hero_btn1: "Mon parcours",
     hero_btn2: "Demander l'accès au CV",
     about_title: "À propos",
@@ -721,8 +745,8 @@ const translations = {
     nav_portfolio: "Portfolio",
     nav_contact: "Contact",
     hero_name: "Afif Boumendil",
-    hero_title: "Performance Management & Business Intelligence Expert | Management Control | Information Systems",
-    hero_desc: "Turning data into strategic decisions through Business Intelligence, management control and information systems.",
+    hero_title: "Performance Management & Business Intelligence Expert\nManagement Control | Information Systems",
+    hero_desc: "I turn complex data into interactive strategic dashboards and <span class='highlight'>insightful decisions</span> to accelerate performance.",
     hero_btn1: "My career",
     hero_btn2: "Request CV access",
     about_title: "About",
@@ -768,8 +792,8 @@ const translations = {
     nav_portfolio: "الإنجازات",
     nav_contact: "اتصل بي",
     hero_name: "عفيف بومنديل",
-    hero_title: "خبير في قيادة الأداء وذكاء الأعمال | مراقبة التصرف | أنظمة المعلومات",
-    hero_desc: "تحويل البيانات إلى قرارات استراتيجية من خلال ذكاء الأعمال ومراقبة التصرف وأنظمة المعلومات.",
+    hero_title: "خبير في قيادة الأداء وذكاء الأعمال\nمراقبة التصرف | أنظمة المعلومات",
+    hero_desc: "أحوّل البيانات المعقدة إلى لوحات قيادة استراتيجية تفاعلية و<span class='highlight'>قرارات رشيدة</span> لتسريع الأداء.",
     hero_btn1: "مساري المهني",
     hero_btn2: "طلب الوصول إلى السيرة الذاتية",
     about_title: "نبذة عني",
@@ -822,7 +846,21 @@ function applyLanguage(lang){
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n");
     if (dict[key] !== undefined) {
-      el.innerHTML = dict[key].replace(/\n/g, "<br>");
+      
+      // Cas particulier pour le Hero Title (gestion du sous-titre sur 2 lignes)
+      if (key === "hero_title") {
+        const parts = dict[key].split('\n');
+        if (parts.length > 1) {
+            el.innerHTML = parts[0] + '<span>' + parts[1] + '</span>';
+        } else {
+            el.innerHTML = dict[key];
+        }
+      } 
+      // Cas standard
+      else {
+        el.innerHTML = dict[key].replace(/\n/g, "<br>");
+      }
+
     }
   });
 
