@@ -238,7 +238,7 @@ section{
     background:var(--light);
 }
 
-/* CARDS */
+/* CARDS (EXPERTISE) */
 
 .grid{
     display:grid;
@@ -252,16 +252,40 @@ section{
     border-radius:15px;
     box-shadow:0 5px 20px rgba(0,0,0,.08);
     transition:.3s;
+    cursor:pointer;
+    position:relative;
 }
 
 .card:hover{
     transform:translateY(-5px);
+    box-shadow:0 8px 25px rgba(17, 141, 255, 0.15);
 }
 
 .card i{
     color:var(--secondary);
     font-size:2rem;
     margin-bottom:15px;
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.card .click-hint {
+    font-size: 0.85rem;
+    color: var(--secondary);
+    margin-top: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.card:hover .click-hint {
+    opacity: 1;
+    transform: translateX(5px);
 }
 
 /* TIMELINE */
@@ -294,12 +318,11 @@ section{
     background: #fff;
 }
 
-/* Modification pour rendre les images du portfolio cliquables */
 .portfolio-item img{
     width:100%;
     display:block;
     cursor: zoom-in;
-    pointer-events: auto; /* Réactive le clic uniquement ici */
+    pointer-events: auto;
     transition: transform 0.3s ease;
 }
 
@@ -307,7 +330,7 @@ section{
     transform: scale(1.03);
 }
 
-/* LIGHTBOX (APERÇU) */
+/* LIGHTBOX (APERÇU IMAGES) */
 
 #lightbox {
     display: none;
@@ -340,6 +363,98 @@ section{
 @keyframes zoomIn {
     from { transform: scale(0.9); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
+}
+
+/* MODAL (EXPERTISE DETAILS) */
+
+.expertise-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(10, 37, 64, 0.8);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.expertise-modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 650px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    animation: slideUp 0.3s ease;
+    color: var(--text);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.5rem;
+    color: #666;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.close-modal:hover {
+    color: #000;
+}
+
+.modal-content h3 {
+    color: var(--primary);
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--secondary);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: #475569;
+}
+
+.modal-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.modal-content ul li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    color: #334155;
+    line-height: 1.5;
+}
+
+.modal-content ul li::before {
+    content: "•";
+    color: var(--secondary);
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: -2px;
 }
 
 /* CV ACCESS */
@@ -418,6 +533,30 @@ html[dir="rtl"] .card i{
     margin-left:0;
 }
 
+html[dir="rtl"] .close-modal {
+    right: auto;
+    left: 20px;
+}
+
+html[dir="rtl"] .modal-content ul {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+html[dir="rtl"] .modal-content ul li {
+    padding-left: 0;
+    padding-right: 25px;
+}
+
+html[dir="rtl"] .modal-content ul li::before {
+    left: auto;
+    right: 0;
+}
+
+html[dir="rtl"] .card:hover .click-hint {
+    transform: translateX(-5px);
+}
+
 @media(max-width:768px){
 
 .hero h1{
@@ -443,6 +582,10 @@ html[dir="rtl"] .card i{
 
 .lang-switcher{
     margin-left:0;
+}
+
+.modal-content {
+    padding: 25px;
 }
 
 }
@@ -536,31 +679,39 @@ l'automatisation du reporting et l'accompagnement des projets d'amélioration co
 
 <div class="grid">
 
-<div class="card">
+<!-- CARTE 1 -->
+<div class="card" onclick="openModal('modal-exp1')">
 <i class="fas fa-chart-line"></i>
 <h3 data-i18n="exp1_title">Pilotage de la Performance</h3>
 <p data-i18n="exp1_text">KPI, Reporting, Budgets, Analyses stratégiques.</p>
+<div class="click-hint"><i class="fas fa-search-plus"></i> <span data-i18n="click_more">Voir plus</span></div>
 </div>
 
-<div class="card">
+<!-- CARTE 2 -->
+<div class="card" onclick="openModal('modal-exp2')">
 <i class="fas fa-chart-pie"></i>
 <h3 data-i18n="exp2_title">Business Intelligence</h3>
 <p data-i18n="exp2_text">Power BI, DAX, Data Visualisation, Reporting.</p>
+<div class="click-hint"><i class="fas fa-search-plus"></i> <span data-i18n="click_more">Voir plus</span></div>
 </div>
 
-<div class="card">
+<!-- CARTE 3 -->
+<div class="card" onclick="openModal('modal-exp3')">
 <i class="fas fa-coins"></i>
 <h3 data-i18n="exp3_title">Contrôle de Gestion</h3>
 <p data-i18n="exp3_text">Prix de revient, Rentabilité, Budgets.</p>
+<div class="click-hint"><i class="fas fa-search-plus"></i> <span data-i18n="click_more">Voir plus</span></div>
 </div>
 
-<div class="card">
+<!-- CARTE 4 -->
+<div class="card" onclick="openModal('modal-exp4')">
 <i class="fas fa-database"></i>
 <h3 data-i18n="exp4_title">Logiciels maîtrisés</h3>
 <p data-i18n="exp4_text">
 Power BI, Excel, SAP, Navision, QAD, ACD,
 Cognos et Selligent.
 </p>
+<div class="click-hint"><i class="fas fa-search-plus"></i> <span data-i18n="click_more">Voir plus</span></div>
 </div>
 
 </div>
@@ -637,12 +788,7 @@ Cognos et Selligent.
 
 <div class="cv-box">
 
-<h2 data-i18n="cv_title">Demande d'accès au CV</h2>
-
-<p data-i18n="cv_text">
-Pour protéger mes informations professionnelles,
-l'accès au CV complet est soumis à validation.
-</p>
+<h2 data-i18n="cv_title">Demande d'accès au CV, document ou information</h2>
 
 <form action="https://formspree.io/f/xnppoogp"
       method="POST">
@@ -735,6 +881,69 @@ Tous droits réservés.
     <img id="lightbox-img" src="" alt="Aperçu">
 </div>
 
+<!-- ===== MODALES POUR LES DOMAINES D'EXPERTISE ===== -->
+
+<!-- Modale 1 : Pilotage -->
+<div id="modal-exp1" class="expertise-modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('modal-exp1')">&times;</span>
+        <h3 data-i18n="exp1_modal_title">Pilotage de la Performance</h3>
+        <p data-i18n="exp1_modal_desc">Mise en place de tableaux de bord dynamiques pour piloter l'efficacité opérationnelle et financière.</p>
+        <ul>
+            <li data-i18n="exp1_modal_li1">Élaboration et suivi de KPI stratégiques (délais de paiement, balance âgée, encaissements, taux d'annulation, productivité).</li>
+            <li data-i18n="exp1_modal_li2">Production de reportings périodiques (hebdomadaires, mensuels, trimestriels) à destination des directions financières et opérationnelles.</li>
+            <li data-i18n="exp1_modal_li3">Analyse des écarts, identification des anomalies et mise en place d'axes d'amélioration.</li>
+            <li data-i18n="exp1_modal_li4">Accompagnement des directions dans l'atteinte de leurs objectifs.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modale 2 : Business Intelligence -->
+<div id="modal-exp2" class="expertise-modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('modal-exp2')">&times;</span>
+        <h3 data-i18n="exp2_modal_title">Business Intelligence</h3>
+        <p data-i18n="exp2_modal_desc">Maîtrise complète de la chaîne de valeur de la donnée, de la source à la prise de décision.</p>
+        <ul>
+            <li data-i18n="exp2_modal_li1"><strong>Power BI :</strong> Développement complet, de l'extraction et modélisation des données (requêtes) jusqu'à la création de rapports interactifs et visuels.</li>
+            <li data-i18n="exp2_modal_li2"><strong>DAX :</strong> Création de mesures complexes et calculs analytiques avancés.</li>
+            <li data-i18n="exp2_modal_li3"><strong>Data Visualisation :</strong> Conception de tableaux de bord décisionnels ergonomiques et percutants.</li>
+            <li data-i18n="exp2_modal_li4"><strong>Reporting & Analyse :</strong> Automatisation des processus de reporting et analyses croisées (Pareto, analyses de rentabilité, etc.).</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modale 3 : Contrôle de Gestion -->
+<div id="modal-exp3" class="expertise-modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('modal-exp3')">&times;</span>
+        <h3 data-i18n="exp3_modal_title">Contrôle de Gestion</h3>
+        <p data-i18n="exp3_modal_desc">Optimisation de la performance financière et pilotage budgétaire.</p>
+        <ul>
+            <li data-i18n="exp3_modal_li1">Suivi et analyse des états financiers (SIG, grand livre, balance, bilan).</li>
+            <li data-i18n="exp3_modal_li2">Calcul des prix de revient, homologation des coûts (fret, achats) et gestion des inventaires.</li>
+            <li data-i18n="exp3_modal_li3">Élaboration et suivi des budgets (achats, ventes, production).</li>
+            <li data-i18n="exp3_modal_li4">Analyse approfondie du chiffre d'affaires et détection des dérives budgétaires.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modale 4 : Logiciels -->
+<div id="modal-exp4" class="expertise-modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('modal-exp4')">&times;</span>
+        <h3 data-i18n="exp4_modal_title">Logiciels maîtrisés</h3>
+        <p data-i18n="exp4_modal_desc">Expertise technique sur une large gamme d'outils décisionnels et ERP.</p>
+        <ul>
+            <li data-i18n="exp4_modal_li1"><strong>Power BI :</strong> Modélisation, requêtes et Data Visualisation.</li>
+            <li data-i18n="exp4_modal_li2"><strong>Excel :</strong> Modélisation financière avancée, tableaux croisés dynamiques, macros.</li>
+            <li data-i18n="exp4_modal_li3"><strong>SAP / Navision / QAD / ACD :</strong> Utilisation quotidienne et extraction de données depuis ces ERP.</li>
+            <li data-i18n="exp4_modal_li4"><strong>Cognos & Selligent :</strong> Outils de reporting et de marketing automation.</li>
+        </ul>
+    </div>
+</div>
+
+
 <script>
 
 /* ===== DICTIONNAIRE DE TRADUCTIONS ===== */
@@ -761,6 +970,7 @@ const translations = {
     exp3_text: "Prix de revient, Rentabilité, Budgets.",
     exp4_title: "Logiciels maîtrisés",
     exp4_text: "Power BI, Excel, SAP, Navision, QAD, ACD, Cognos et Selligent.",
+    click_more: "Voir plus",
     path_title: "Parcours Professionnel",
     path1_company: "SOGECC",
     path1_role: "Contrôleur de Gestion Senior",
@@ -772,8 +982,7 @@ const translations = {
     path3_role: "Contrôleur de Gestion",
     path3_desc: "Prix de revient, analyses financières et tableaux de bord.",
     portfolio_title: "Réalisations Power BI",
-    cv_title: "Demande d'accès au CV",
-    cv_text: "Pour protéger mes informations professionnelles, l'accès au CV complet est soumis à validation.",
+    cv_title: "Demande d'accès au CV, document ou information",
     cv_name: "Nom et prénom",
     cv_company: "Société",
     cv_position: "Fonction",
@@ -784,7 +993,36 @@ const translations = {
     contact_phone: "Tel : ",
     contact_linkedin: "Mon profil LinkedIn",
     contact_location: "Tunis - Tunisie\nDisponible pour missions, accompagnement, reporting, Power BI et pilotage de la performance.",
-    footer_text: "© 2026 Afif Boumendil | Expert en Pilotage de la Performance & Business Intelligence. Tous droits réservés."
+    footer_text: "© 2026 Afif Boumendil | Expert en Pilotage de la Performance & Business Intelligence. Tous droits réservés.",
+    
+    /* Modales FR */
+    exp1_modal_title: "Pilotage de la Performance",
+    exp1_modal_desc: "Mise en place de tableaux de bord dynamiques pour piloter l'efficacité opérationnelle et financière.",
+    exp1_modal_li1: "Élaboration et suivi de KPI stratégiques (délais de paiement, balance âgée, encaissements, taux d'annulation, productivité).",
+    exp1_modal_li2: "Production de reportings périodiques (hebdomadaires, mensuels, trimestriels) à destination des directions financières et opérationnelles.",
+    exp1_modal_li3: "Analyse des écarts, identification des anomalies et mise en place d'axes d'amélioration.",
+    exp1_modal_li4: "Accompagnement des directions dans l'atteinte de leurs objectifs.",
+    
+    exp2_modal_title: "Business Intelligence",
+    exp2_modal_desc: "Maîtrise complète de la chaîne de valeur de la donnée, de la source à la prise de décision.",
+    exp2_modal_li1: "<strong>Power BI :</strong> Développement complet, de l'extraction et modélisation des données (requêtes) jusqu'à la création de rapports interactifs et visuels.",
+    exp2_modal_li2: "<strong>DAX :</strong> Création de mesures complexes et calculs analytiques avancés.",
+    exp2_modal_li3: "<strong>Data Visualisation :</strong> Conception de tableaux de bord décisionnels ergonomiques et percutants.",
+    exp2_modal_li4: "<strong>Reporting & Analyse :</strong> Automatisation des processus de reporting et analyses croisées (Pareto, analyses de rentabilité, etc.).",
+    
+    exp3_modal_title: "Contrôle de Gestion",
+    exp3_modal_desc: "Optimisation de la performance financière et pilotage budgétaire.",
+    exp3_modal_li1: "Suivi et analyse des états financiers (SIG, grand livre, balance, bilan).",
+    exp3_modal_li2: "Calcul des prix de revient, homologation des coûts (fret, achats) et gestion des inventaires.",
+    exp3_modal_li3: "Élaboration et suivi des budgets (achats, ventes, production).",
+    exp3_modal_li4: "Analyse approfondie du chiffre d'affaires et détection des dérives budgétaires.",
+    
+    exp4_modal_title: "Logiciels maîtrisés",
+    exp4_modal_desc: "Expertise technique sur une large gamme d'outils décisionnels et ERP.",
+    exp4_modal_li1: "<strong>Power BI :</strong> Modélisation, requêtes et Data Visualisation.",
+    exp4_modal_li2: "<strong>Excel :</strong> Modélisation financière avancée, tableaux croisés dynamiques, macros.",
+    exp4_modal_li3: "<strong>SAP / Navision / QAD / ACD :</strong> Utilisation quotidienne et extraction de données depuis ces ERP.",
+    exp4_modal_li4: "<strong>Cognos & Selligent :</strong> Outils de reporting et de marketing automation."
   },
   en: {
     nav_about: "About",
@@ -808,6 +1046,7 @@ const translations = {
     exp3_text: "Cost price, Profitability, Budgets.",
     exp4_title: "Software skills",
     exp4_text: "Power BI, Excel, SAP, Navision, QAD, ACD, Cognos and Selligent.",
+    click_more: "See more",
     path_title: "Professional Career",
     path1_company: "SOGECC",
     path1_role: "Senior Management Controller",
@@ -819,8 +1058,7 @@ const translations = {
     path3_role: "Management Controller",
     path3_desc: "Cost price, financial analysis and dashboards.",
     portfolio_title: "Power BI Portfolio",
-    cv_title: "CV Access Request",
-    cv_text: "To protect my professional information, access to the full CV is subject to approval.",
+    cv_title: "Request for access to CV, document or information",
     cv_name: "Full name",
     cv_company: "Company",
     cv_position: "Position",
@@ -831,7 +1069,36 @@ const translations = {
     contact_phone: "Phone: ",
     contact_linkedin: "My LinkedIn profile",
     contact_location: "Tunis - Tunisia\nAvailable for assignments, consulting, reporting, Power BI and performance management.",
-    footer_text: "© 2026 Afif Boumendil | Performance Management & Business Intelligence Expert. All rights reserved."
+    footer_text: "© 2026 Afif Boumendil | Performance Management & Business Intelligence Expert. All rights reserved.",
+    
+    /* Modales EN */
+    exp1_modal_title: "Performance Management",
+    exp1_modal_desc: "Implementation of dynamic dashboards to steer operational and financial efficiency.",
+    exp1_modal_li1: "Development and monitoring of strategic KPIs (payment terms, aged balance, collections, cancellation rate, productivity).",
+    exp1_modal_li2: "Production of periodic reports (weekly, monthly, quarterly) for financial and operational management.",
+    exp1_modal_li3: "Variance analysis, anomaly identification and implementation of improvement plans.",
+    exp1_modal_li4: "Supporting management in achieving their objectives.",
+    
+    exp2_modal_title: "Business Intelligence",
+    exp2_modal_desc: "Complete mastery of the data value chain, from source to decision-making.",
+    exp2_modal_li1: "<strong>Power BI:</strong> Full development, from data extraction and modeling (queries) to the creation of interactive and visual reports.",
+    exp2_modal_li2: "<strong>DAX:</strong> Creation of complex measures and advanced analytical calculations.",
+    exp2_modal_li3: "<strong>Data Visualization:</strong> Design of ergonomic and impactful decision-making dashboards.",
+    exp2_modal_li4: "<strong>Reporting & Analysis:</strong> Automation of reporting processes and cross-analysis (Pareto, profitability analyses, etc.).",
+    
+    exp3_modal_title: "Management Control",
+    exp3_modal_desc: "Optimization of financial performance and budget management.",
+    exp3_modal_li1: "Monitoring and analysis of financial statements (income statement, general ledger, trial balance, balance sheet).",
+    exp3_modal_li2: "Cost price calculation, cost approval (freight, purchases) and inventory management.",
+    exp3_modal_li3: "Preparation and monitoring of budgets (purchases, sales, production).",
+    exp3_modal_li4: "In-depth turnover analysis and detection of budget variances.",
+    
+    exp4_modal_title: "Software skills",
+    exp4_modal_desc: "Technical expertise on a wide range of decision-making tools and ERPs.",
+    exp4_modal_li1: "<strong>Power BI:</strong> Modeling, queries and Data Visualization.",
+    exp4_modal_li2: "<strong>Excel:</strong> Advanced financial modeling, pivot tables, macros.",
+    exp4_modal_li3: "<strong>SAP / Navision / QAD / ACD:</strong> Daily use and data extraction from these ERPs.",
+    exp4_modal_li4: "<strong>Cognos & Selligent:</strong> Reporting and marketing automation tools."
   },
   ar: {
     nav_about: "نبذة عني",
@@ -855,6 +1122,7 @@ const translations = {
     exp3_text: "تكلفة الإنتاج، الربحية، الميزانيات.",
     exp4_title: "البرامج المتقنة",
     exp4_text: "Power BI، Excel، SAP، Navision، QAD، ACD، Cognos وSelligent.",
+    click_more: "عرض المزيد",
     path_title: "المسار المهني",
     path1_company: "SOGECC",
     path1_role: "مراقب تصرف أول",
@@ -866,8 +1134,7 @@ const translations = {
     path3_role: "مراقب تصرف",
     path3_desc: "تكلفة الإنتاج، التحليلات المالية ولوحات القيادة.",
     portfolio_title: "إنجازات Power BI",
-    cv_title: "طلب الوصول إلى السيرة الذاتية",
-    cv_text: "لحماية معلوماتي المهنية، يخضع الوصول إلى السيرة الذاتية الكاملة للموافقة.",
+    cv_title: "طلب الوصول إلى السيرة الذاتية، وثيقة أو معلومة",
     cv_name: "الاسم واللقب",
     cv_company: "الشركة",
     cv_position: "الوظيفة",
@@ -878,7 +1145,36 @@ const translations = {
     contact_phone: "الهاتف: ",
     contact_linkedin: "ملفي على LinkedIn",
     contact_location: "تونس - تونس\nمتاح للمهام والمواكبة والتقارير وPower BI وقيادة الفعالية.",
-    footer_text: "© 2026 عفيف بومنديل | خبير في قيادة الفعالية وذكاء الأعمال. جميع الحقوق محفوظة."
+    footer_text: "© 2026 عفيف بومنديل | خبير في قيادة الفعالية وذكاء الأعمال. جميع الحقوق محفوظة.",
+    
+    /* Modales AR */
+    exp1_modal_title: "قيادة الفعالية",
+    exp1_modal_desc: "إنشاء لوحات قيادة ديناميكية لتوجيه الكفاءة التشغيلية والمالية.",
+    exp1_modal_li1: "تطوير ومتابعة مؤشرات الأداء الاستراتيجية (آجال الدفع، الميزان العمري، التحصيلات، نسبة الإلغاء، الإنتاجية).",
+    exp1_modal_li2: "إعداد تقارير دورية (أسبوعية، شهرية، ربع سنوية) للإدارات المالية والتشغيلية.",
+    exp1_modal_li3: "تحليل الفروقات، تحديد الحالات الشاذة ووضع خطط للتحسين.",
+    exp1_modal_li4: "مواكبة الإدارات في تحقيق أهدافها.",
+    
+    exp2_modal_title: "ذكاء الأعمال",
+    exp2_modal_desc: "إتقان كامل لسلسلة قيمة البيانات، من المصدر إلى اتخاذ القرار.",
+    exp2_modal_li1: "<strong>Power BI:</strong> تطوير كامل، من استخراج ونمذجة البيانات (الاستعلامات) إلى إنشاء تقارير تفاعلية ومرئية.",
+    exp2_modal_li2: "<strong>DAX:</strong> إنشاء مقاييس معقدة وحسابات تحليلية متقدمة.",
+    exp2_modal_li3: "<strong>تصور البيانات:</strong> تصميم لوحات قيادة لاتخاذ القرارات مريحة وفعالة.",
+    exp2_modal_li4: "<strong>التقارير والتحليل:</strong> أتمتة عمليات إعداد التقارير والتحليلات المتقاطعة (باريتو، تحليلات الربحية، إلخ).",
+    
+    exp3_modal_title: "مراقبة التصرف",
+    exp3_modal_desc: "تحسين الفعالية المالية وإدارة الميزانية.",
+    exp3_modal_li1: "متابعة وتحليل البيانات المالية (SIG، دفتر اليومية، الميزان، الميزانية العمومية).",
+    exp3_modal_li2: "حساب تكلفة الإنتاج، المصادقة على التكاليف (الشحن، المشتريات) وإدارة المخزون.",
+    exp3_modal_li3: "إعداد ومتابعة الميزانيات (المشتريات، المبيعات، الإنتاج).",
+    exp3_modal_li4: "تحليل معمق لرقم الأعمال والكشف عن الانحرافات في الميزانية.",
+    
+    exp4_modal_title: "البرامج المتقنة",
+    exp4_modal_desc: "خبرة تقنية في مجموعة واسعة من أدوات اتخاذ القرار وأنظمة ERP.",
+    exp4_modal_li1: "<strong>Power BI:</strong> النمذجة والاستعلامات وتصور البيانات.",
+    exp4_modal_li2: "<strong>Excel:</strong> النمذجة المالية المتقدمة، الجداول المحورية، وحدات الماكرو.",
+    exp4_modal_li3: "<strong>SAP / Navision / QAD / ACD:</strong> الاستخدام اليومي واستخراج البيانات من أنظمة ERP هذه.",
+    exp4_modal_li4: "<strong>Cognos & Selligent:</strong> أدوات إعداد التقارير وأتمتة التسويق."
   }
 };
 
@@ -944,6 +1240,36 @@ document.addEventListener("DOMContentLoaded", () => {
   applyLanguage(saved);
 });
 
+/* ===== MODAL SCRIPT (EXPERTISE) ===== */
+function openModal(id) {
+    document.getElementById(id).classList.add("active");
+}
+
+function closeModal(id) {
+    document.getElementById(id).classList.remove("active");
+}
+
+// Fermer la modale en cliquant en dehors du contenu
+document.querySelectorAll('.expertise-modal').forEach(modal => {
+    modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+            this.classList.remove('active');
+        }
+    });
+});
+
+// Fermer avec la touche Échap
+document.addEventListener("keydown", function(e) {
+  if(e.key === "Escape") {
+    document.querySelectorAll('.expertise-modal').forEach(modal => {
+        modal.classList.remove('active');
+    });
+    if (lightbox.classList.contains("active")) {
+        lightbox.classList.remove("active");
+    }
+  }
+});
+
 /* ===== LIGHTBOX SCRIPT ===== */
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
@@ -959,13 +1285,6 @@ portfolioImages.forEach(img => {
 // Fermer l'aperçu en cliquant n'importe où sur le fond
 lightbox.addEventListener("click", function() {
   lightbox.classList.remove("active");
-});
-
-// Fermer avec la touche Échap
-document.addEventListener("keydown", function(e) {
-  if(e.key === "Escape" && lightbox.classList.contains("active")) {
-    lightbox.classList.remove("active");
-  }
 });
 
 /* ===== PROTECTION BASIQUE ===== */
