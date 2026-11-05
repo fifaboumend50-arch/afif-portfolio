@@ -365,7 +365,7 @@ section{
     to { transform: scale(1); opacity: 1; }
 }
 
-/* MODAL (EXPERTISE DETAILS) */
+/* MODAL (EXPERTISE DETAILS) - NOUVEAU DESIGN */
 
 .expertise-modal {
     display: none;
@@ -375,8 +375,8 @@ section{
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(10, 37, 64, 0.8);
-    backdrop-filter: blur(5px);
+    background-color: rgba(10, 37, 64, 0.7);
+    backdrop-filter: blur(4px);
     align-items: center;
     justify-content: center;
     padding: 20px;
@@ -388,12 +388,12 @@ section{
 
 .modal-content {
     background: white;
-    padding: 40px;
-    border-radius: 15px;
-    max-width: 650px;
+    padding: 35px 40px;
+    border-radius: 12px;
+    max-width: 700px;
     width: 100%;
     position: relative;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
     animation: slideUp 0.3s ease;
     color: var(--text);
     max-height: 90vh;
@@ -410,51 +410,108 @@ section{
     top: 15px;
     right: 20px;
     font-size: 1.5rem;
-    color: #666;
+    color: #94A3B8;
     cursor: pointer;
     transition: .3s;
 }
 
 .close-modal:hover {
-    color: #000;
+    color: #0F172A;
+}
+
+/* En-tête de la modale (Icône + Titre) */
+.modal-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.modal-icon-box {
+    background-color: #F0F7FF;
+    color: var(--secondary);
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.modal-title-container {
+    border-left: 2px solid #E2E8F0;
+    padding-left: 20px;
+    flex-grow: 1;
+}
+
+html[dir="rtl"] .modal-title-container {
+    border-left: none;
+    border-right: 2px solid #E2E8F0;
+    padding-left: 0;
+    padding-right: 20px;
 }
 
 .modal-content h3 {
     color: var(--primary);
-    font-size: 1.6rem;
-    margin-bottom: 15px;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
     border-bottom: 2px solid var(--secondary);
-    padding-bottom: 10px;
+    padding-bottom: 5px;
     display: inline-block;
 }
 
-.modal-content p {
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-    color: #475569;
-}
-
-.modal-content ul {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-.modal-content ul li {
-    position: relative;
-    padding-left: 25px;
-    margin-bottom: 12px;
+.modal-content p.modal-desc {
+    margin-bottom: 25px;
+    font-size: 1.05rem;
     color: #334155;
+    line-height: 1.6;
+}
+
+/* Liste avec icônes à gauche */
+.modal-list {
+    list-style: none;
+    padding: 0;
+}
+
+.modal-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #F1F5F9;
+    color: #1E293B;
+    font-size: 1rem;
+}
+
+.modal-list li:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.list-icon {
+    background-color: #F0F7FF;
+    color: var(--secondary);
+    min-width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.list-text {
+    padding-top: 4px;
     line-height: 1.5;
 }
 
-.modal-content ul li::before {
-    content: "•";
-    color: var(--secondary);
-    font-weight: bold;
-    font-size: 1.2rem;
-    position: absolute;
-    left: 0;
-    top: -2px;
+.list-text strong {
+    color: var(--primary);
 }
 
 /* CV ACCESS */
@@ -538,19 +595,8 @@ html[dir="rtl"] .close-modal {
     left: 20px;
 }
 
-html[dir="rtl"] .modal-content ul {
-    padding-right: 0;
-    padding-left: 0;
-}
-
-html[dir="rtl"] .modal-content ul li {
-    padding-left: 0;
-    padding-right: 25px;
-}
-
-html[dir="rtl"] .modal-content ul li::before {
-    left: auto;
-    right: 0;
+html[dir="rtl"] .modal-list li {
+    text-align: right;
 }
 
 html[dir="rtl"] .card:hover .click-hint {
@@ -588,6 +634,26 @@ html[dir="rtl"] .card:hover .click-hint {
     padding: 25px;
 }
 
+.modal-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.modal-title-container {
+    border-left: none;
+    padding-left: 0;
+    width: 100%;
+}
+
+html[dir="rtl"] .modal-title-container {
+    padding-right: 0;
+}
+
+.modal-list li {
+    flex-direction: column;
+    gap: 10px;
+}
 }
 
 </style>
@@ -682,7 +748,7 @@ l'automatisation du reporting et l'accompagnement des projets d'amélioration co
 <!-- CARTE 1 -->
 <div class="card" onclick="openModal('modal-exp1')">
 <i class="fas fa-chart-line"></i>
-<h3 data-i18n="exp1_title">Pilotage de la Performance</h3>
+<h3 data-i18n="exp1_title">Pilotage de la performance opérationnelle</h3>
 <p data-i18n="exp1_text">KPI, Reporting, Budgets, Analyses stratégiques.</p>
 <div class="click-hint"><i class="fas fa-search-plus"></i> <span data-i18n="click_more">Voir plus</span></div>
 </div>
@@ -883,13 +949,33 @@ Tous droits réservés.
 <div id="modal-exp1" class="expertise-modal">
     <div class="modal-content">
         <span class="close-modal" onclick="closeModal('modal-exp1')">&times;</span>
-        <h3 data-i18n="exp1_modal_title">Pilotage de la Performance</h3>
-        <p data-i18n="exp1_modal_desc">Mise en place de tableaux de bord dynamiques pour piloter l'efficacité opérationnelle et financière.</p>
-        <ul>
-            <li data-i18n="exp1_modal_li1">Élaboration et suivi de KPI stratégiques (délais de paiement, balance âgée, encaissements, taux d'annulation, productivité).</li>
-            <li data-i18n="exp1_modal_li2">Production de reportings périodiques (hebdomadaires, mensuels, trimestriels) à destination des directions financières et opérationnelles.</li>
-            <li data-i18n="exp1_modal_li3">Analyse des écarts, identification des anomalies et mise en place d'axes d'amélioration.</li>
-            <li data-i18n="exp1_modal_li4">Accompagnement des directions dans l'atteinte de leurs objectifs.</li>
+        
+        <div class="modal-header">
+            <div class="modal-icon-box"><i class="fas fa-chart-line"></i></div>
+            <div class="modal-title-container">
+                <h3 data-i18n="exp1_modal_title">Pilotage de la performance opérationnelle</h3>
+            </div>
+        </div>
+
+        <p class="modal-desc" data-i18n="exp1_modal_desc">Mise en place de tableaux de bord dynamiques pour piloter l'efficacité opérationnelle et financière.</p>
+        
+        <ul class="modal-list">
+            <li>
+                <div class="list-icon"><i class="fas fa-bullseye"></i></div>
+                <div class="list-text" data-i18n="exp1_modal_li1"><strong>Définition</strong> et suivi de KPI stratégiques.</div>
+            </li>
+            <li>
+                <div class="list-icon"><i class="fas fa-chart-bar"></i></div>
+                <div class="list-text" data-i18n="exp1_modal_li2"><strong>Production</strong> de reportings périodiques fiables et pertinents.</div>
+            </li>
+            <li>
+                <div class="list-icon"><i class="fas fa-search"></i></div>
+                <div class="list-text" data-i18n="exp1_modal_li3"><strong>Analyse</strong> des écarts, identification des anomalies et mise en œuvre des plans d'amélioration.</div>
+            </li>
+            <li>
+                <div class="list-icon"><i class="fas fa-users"></i></div>
+                <div class="list-text" data-i18n="exp1_modal_li4"><strong>Accompagnement</strong> des directions dans l'atteinte de leurs objectifs.</div>
+            </li>
         </ul>
     </div>
 </div>
@@ -898,13 +984,33 @@ Tous droits réservés.
 <div id="modal-exp2" class="expertise-modal">
     <div class="modal-content">
         <span class="close-modal" onclick="closeModal('modal-exp2')">&times;</span>
-        <h3 data-i18n="exp2_modal_title">Business Intelligence</h3>
-        <p data-i18n="exp2_modal_desc">Maîtrise complète de la chaîne de valeur de la donnée, de la source à la prise de décision.</p>
-        <ul>
-            <li data-i18n="exp2_modal_li1"><strong>Power BI :</strong> Développement complet, de l'extraction et modélisation des données (requêtes) jusqu'à la création de rapports interactifs et visuels.</li>
-            <li data-i18n="exp2_modal_li2"><strong>DAX :</strong> Création de mesures complexes et calculs analytiques avancés.</li>
-            <li data-i18n="exp2_modal_li3"><strong>Data Visualisation :</strong> Conception de tableaux de bord décisionnels ergonomiques et percutants.</li>
-            <li data-i18n="exp2_modal_li4"><strong>Reporting & Analyse :</strong> Automatisation des processus de reporting et analyses croisées (Pareto, analyses de rentabilité, etc.).</li>
+        
+        <div class="modal-header">
+            <div class="modal-icon-box"><i class="fas fa-chart-pie"></i></div>
+            <div class="modal-title-container">
+                <h3 data-i18n="exp2_modal_title">Business Intelligence</h3>
+            </div>
+        </div>
+
+        <p class="modal-desc" data-i18n="exp2_modal_desc">Maîtrise complète de la chaîne de valeur de la donnée, de la source à la prise de décision.</p>
+        
+        <ul class="modal-list">
+            <li>
+                <div class="list-icon"><i class="fas fa-cogs"></i></div>
+                <div class="list-text" data-i18n="exp2_modal_li1"><strong>Power BI :</strong> Développement complet, de l'extraction et modélisation des données jusqu'à la création de rapports interactifs.</div>
+            </li>
+            <li>
+                <div class="list-icon"><i class="fas fa-calculator"></i></div>
+                <div class="list-text" data-i18n="exp2_modal_li2"><strong>DAX :</strong> Création de mesures complexes et calculs analytiques avancés.</div>
+            </li>
+            <li>
+                <div class="list-icon"><i class="fas fa-palette"></i></div>
+                <div class="list-text" data-i18n="exp2_modal_li3"><strong>Data Visualisation :</strong> Conception de tableaux de bord décisionnels ergonomiques et percutants.</div>
+            </li>
+            <li>
+                <div class="list-icon"><i class="fas fa-file-alt"></i></div>
+                <div class="list-text" data-i18n="exp2_modal_li4"><strong>Reporting & Analyse :</strong> Automatisation des processus de reporting et analyses croisées.</div>
+            </li>
         </ul>
     </div>
 </div>
@@ -913,13 +1019,33 @@ Tous droits réservés.
 <div id="modal-exp3" class="expertise-modal">
     <div class="modal-content">
         <span class="close-modal" onclick="closeModal('modal-exp3')">&times;</span>
-        <h3 data-i18n="exp3_modal_title">Contrôle de Gestion</h3>
-        <p data-i18n="exp3_modal_desc">Optimisation de la performance financière et pilotage budgétaire.</p>
-        <ul>
-            <li data-i18n="exp3_modal_li1">Suivi et analyse des états financiers (SIG, grand livre, balance, bilan).</li>
-            <li data-i18n="exp3_modal_li2">Calcul des prix de revient, homologation des coûts (fret, achats) et gestion des inventaires.</li>
-            <li data-i18n="exp3_modal_li3">Élaboration et suivi des budgets (achats, ventes, production).</li>
-            <li data-i18n="exp3_modal_li4">Analyse approfondie du chiffre d'affaires et détection des dérives budgétaires.</li>
+        
+        <div class="modal-header">
+            <div class="modal-icon-box"><i class="fas fa-coins"></i></div>
+            <div class="modal-title-container">
+                <h3 data-i18n="exp3_modal_title">Contrôle de Gestion</h3>
+            </div>
+        </div>
+
+        <p class="modal-desc" data-i18n="exp3_modal_desc">Optimisation de la performance financière et pilotage budgétaire.</p>
+        
+        <ul class="modal-list">
+            <li>
+                <div class="list-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                <div class="list-text" data-i18n="exp3_modal_li1"><strong>Suivi</strong> et analyse des états financiers.</div>
+            </li>
+            <li>
+                <div class="list-icon"><i class="fas fa-calculator"></i></div>
+                <div class="list-text" data-i18n="exp3_modal_li2"><strong>Calcul</strong> des prix de revient, homologation des coûts et gestion des inventaires.</div>
+            </li>
+            <li>
+                <div class="list-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="list-text" data-i18n="exp3_modal_li3"><strong>Élaboration</strong> et suivi des budgets (achats, ventes, production).</div>
+            </li>
+            <li>
+                <div class="list-icon"><i class="fas fa-search-dollar"></i></div>
+                <div class="list-text" data-i18n="exp3_modal_li4"><strong>Analyse approfondie</strong> du chiffre d'affaires et détection des dérives.</div>
+            </li>
         </ul>
     </div>
 </div>
@@ -928,13 +1054,33 @@ Tous droits réservés.
 <div id="modal-exp4" class="expertise-modal">
     <div class="modal-content">
         <span class="close-modal" onclick="closeModal('modal-exp4')">&times;</span>
-        <h3 data-i18n="exp4_modal_title">Logiciels maîtrisés</h3>
-        <p data-i18n="exp4_modal_desc">Expertise technique sur une large gamme d'outils décisionnels et ERP.</p>
-        <ul>
-            <li data-i18n="exp4_modal_li1"><strong>Power BI :</strong> Modélisation, requêtes et Data Visualisation.</li>
-            <li data-i18n="exp4_modal_li2"><strong>Excel :</strong> Modélisation financière avancée, tableaux croisés dynamiques, macros.</li>
-            <li data-i18n="exp4_modal_li3"><strong>SAP / Navision / QAD / ACD :</strong> Utilisation quotidienne et extraction de données depuis ces ERP.</li>
-            <li data-i18n="exp4_modal_li4"><strong>Cognos & Selligent :</strong> Outils de reporting et de marketing automation.</li>
+        
+        <div class="modal-header">
+            <div class="modal-icon-box"><i class="fas fa-database"></i></div>
+            <div class="modal-title-container">
+                <h3 data-i18n="exp4_modal_title">Logiciels maîtrisés</h3>
+            </div>
+        </div>
+
+        <p class="modal-desc" data-i18n="exp4_modal_desc">Expertise technique sur une large gamme d'outils décisionnels et ERP.</p>
+        
+        <ul class="modal-list">
+            <li>
+                <div class="list-icon"><i class="fas fa-chart-pie"></i></div>
+                <div class="list-text" data-i18n="exp4_modal_li1"><strong>Power BI :</strong> Modélisation, requêtes et Data Visualisation.</div>
+            </li>
+            <li>
+                <div class="list-icon"><i class="fas fa-table"></i></div>
+                <div class="list-text" data-i18n="exp4_modal_li2"><strong>Excel :</strong> Modélisation financière avancée, tableaux croisés dynamiques, macros.</div>
+            </li>
+            <li>
+                <div class="list-icon"><i class="fas fa-server"></i></div>
+                <div class="list-text" data-i18n="exp4_modal_li3"><strong>SAP / Navision / QAD / ACD :</strong> Utilisation quotidienne et extraction de données.</div>
+            </li>
+            <li>
+                <div class="list-icon"><i class="fas fa-network-wired"></i></div>
+                <div class="list-text" data-i18n="exp4_modal_li4"><strong>Cognos & Selligent :</strong> Outils de reporting et de marketing automation.</div>
+            </li>
         </ul>
     </div>
 </div>
@@ -958,7 +1104,7 @@ const translations = {
     about_title: "À propos",
     about_text: "Professionnel expérimenté dans le pilotage de la performance, l'analyse des données, le contrôle de gestion et la Business Intelligence. Mon expertise repose sur la conception de tableaux de bord décisionnels, l'automatisation du reporting et l'accompagnement des projets d'amélioration continue.",
     expertise_title: "Domaines d'Expertise",
-    exp1_title: "Pilotage de la Performance",
+    exp1_title: "Pilotage de la performance opérationnelle",
     exp1_text: "KPI, Reporting, Budgets, Analyses stratégiques.",
     exp2_title: "Business Intelligence",
     exp2_text: "Power BI, DAX, Data Visualisation, Reporting.",
@@ -991,32 +1137,32 @@ const translations = {
     footer_text: "© 2026 Afif Boumendil | Expert en Pilotage de la Performance & Business Intelligence. Tous droits réservés.",
     
     /* Modales FR */
-    exp1_modal_title: "Pilotage de la Performance",
+    exp1_modal_title: "Pilotage de la performance opérationnelle",
     exp1_modal_desc: "Mise en place de tableaux de bord dynamiques pour piloter l'efficacité opérationnelle et financière.",
-    exp1_modal_li1: "Élaboration et suivi de KPI stratégiques (délais de paiement, balance âgée, encaissements, taux d'annulation, productivité).",
-    exp1_modal_li2: "Production de reportings périodiques (hebdomadaires, mensuels, trimestriels) à destination des directions financières et opérationnelles.",
-    exp1_modal_li3: "Analyse des écarts, identification des anomalies et mise en place d'axes d'amélioration.",
-    exp1_modal_li4: "Accompagnement des directions dans l'atteinte de leurs objectifs.",
+    exp1_modal_li1: "<strong>Définition</strong> et suivi de KPI stratégiques.",
+    exp1_modal_li2: "<strong>Production</strong> de reportings périodiques fiables et pertinents.",
+    exp1_modal_li3: "<strong>Analyse</strong> des écarts, identification des anomalies et mise en œuvre des plans d'amélioration.",
+    exp1_modal_li4: "<strong>Accompagnement</strong> des directions dans l'atteinte de leurs objectifs.",
     
     exp2_modal_title: "Business Intelligence",
     exp2_modal_desc: "Maîtrise complète de la chaîne de valeur de la donnée, de la source à la prise de décision.",
-    exp2_modal_li1: "<strong>Power BI :</strong> Développement complet, de l'extraction et modélisation des données (requêtes) jusqu'à la création de rapports interactifs et visuels.",
+    exp2_modal_li1: "<strong>Power BI :</strong> Développement complet, de l'extraction et modélisation des données jusqu'à la création de rapports interactifs.",
     exp2_modal_li2: "<strong>DAX :</strong> Création de mesures complexes et calculs analytiques avancés.",
     exp2_modal_li3: "<strong>Data Visualisation :</strong> Conception de tableaux de bord décisionnels ergonomiques et percutants.",
-    exp2_modal_li4: "<strong>Reporting & Analyse :</strong> Automatisation des processus de reporting et analyses croisées (Pareto, analyses de rentabilité, etc.).",
+    exp2_modal_li4: "<strong>Reporting & Analyse :</strong> Automatisation des processus de reporting et analyses croisées.",
     
     exp3_modal_title: "Contrôle de Gestion",
     exp3_modal_desc: "Optimisation de la performance financière et pilotage budgétaire.",
-    exp3_modal_li1: "Suivi et analyse des états financiers (SIG, grand livre, balance, bilan).",
-    exp3_modal_li2: "Calcul des prix de revient, homologation des coûts (fret, achats) et gestion des inventaires.",
-    exp3_modal_li3: "Élaboration et suivi des budgets (achats, ventes, production).",
-    exp3_modal_li4: "Analyse approfondie du chiffre d'affaires et détection des dérives budgétaires.",
+    exp3_modal_li1: "<strong>Suivi</strong> et analyse des états financiers.",
+    exp3_modal_li2: "<strong>Calcul</strong> des prix de revient, homologation des coûts et gestion des inventaires.",
+    exp3_modal_li3: "<strong>Élaboration</strong> et suivi des budgets (achats, ventes, production).",
+    exp3_modal_li4: "<strong>Analyse approfondie</strong> du chiffre d'affaires et détection des dérives.",
     
     exp4_modal_title: "Logiciels maîtrisés",
     exp4_modal_desc: "Expertise technique sur une large gamme d'outils décisionnels et ERP.",
     exp4_modal_li1: "<strong>Power BI :</strong> Modélisation, requêtes et Data Visualisation.",
     exp4_modal_li2: "<strong>Excel :</strong> Modélisation financière avancée, tableaux croisés dynamiques, macros.",
-    exp4_modal_li3: "<strong>SAP / Navision / QAD / ACD :</strong> Utilisation quotidienne et extraction de données depuis ces ERP.",
+    exp4_modal_li3: "<strong>SAP / Navision / QAD / ACD :</strong> Utilisation quotidienne et extraction de données.",
     exp4_modal_li4: "<strong>Cognos & Selligent :</strong> Outils de reporting et de marketing automation."
   },
   en: {
@@ -1033,7 +1179,7 @@ const translations = {
     about_title: "About",
     about_text: "Experienced professional in performance management, data analysis, management control and Business Intelligence. My expertise lies in designing decision-making dashboards, automating reporting and supporting continuous improvement projects.",
     expertise_title: "Areas of Expertise",
-    exp1_title: "Performance Management",
+    exp1_title: "Operational Performance Management",
     exp1_text: "KPIs, Reporting, Budgets, Strategic Analysis.",
     exp2_title: "Business Intelligence",
     exp2_text: "Power BI, DAX, Data Visualization, Reporting.",
@@ -1066,32 +1212,32 @@ const translations = {
     footer_text: "© 2026 Afif Boumendil | Performance Management & Business Intelligence Expert. All rights reserved.",
     
     /* Modales EN */
-    exp1_modal_title: "Performance Management",
+    exp1_modal_title: "Operational Performance Management",
     exp1_modal_desc: "Implementation of dynamic dashboards to steer operational and financial efficiency.",
-    exp1_modal_li1: "Development and monitoring of strategic KPIs (payment terms, aged balance, collections, cancellation rate, productivity).",
-    exp1_modal_li2: "Production of periodic reports (weekly, monthly, quarterly) for financial and operational management.",
-    exp1_modal_li3: "Variance analysis, anomaly identification and implementation of improvement plans.",
-    exp1_modal_li4: "Supporting management in achieving their objectives.",
+    exp1_modal_li1: "<strong>Definition</strong> and monitoring of strategic KPIs.",
+    exp1_modal_li2: "<strong>Production</strong> of reliable and relevant periodic reports.",
+    exp1_modal_li3: "<strong>Analysis</strong> of variances, anomaly identification and implementation of improvement plans.",
+    exp1_modal_li4: "<strong>Supporting</strong> management in achieving their objectives.",
     
     exp2_modal_title: "Business Intelligence",
     exp2_modal_desc: "Complete mastery of the data value chain, from source to decision-making.",
-    exp2_modal_li1: "<strong>Power BI:</strong> Full development, from data extraction and modeling (queries) to the creation of interactive and visual reports.",
+    exp2_modal_li1: "<strong>Power BI:</strong> Full development, from data extraction and modeling to the creation of interactive reports.",
     exp2_modal_li2: "<strong>DAX:</strong> Creation of complex measures and advanced analytical calculations.",
     exp2_modal_li3: "<strong>Data Visualization:</strong> Design of ergonomic and impactful decision-making dashboards.",
-    exp2_modal_li4: "<strong>Reporting & Analysis:</strong> Automation of reporting processes and cross-analysis (Pareto, profitability analyses, etc.).",
+    exp2_modal_li4: "<strong>Reporting & Analysis:</strong> Automation of reporting processes and cross-analysis.",
     
     exp3_modal_title: "Management Control",
     exp3_modal_desc: "Optimization of financial performance and budget management.",
-    exp3_modal_li1: "Monitoring and analysis of financial statements (income statement, general ledger, trial balance, balance sheet).",
-    exp3_modal_li2: "Cost price calculation, cost approval (freight, purchases) and inventory management.",
-    exp3_modal_li3: "Preparation and monitoring of budgets (purchases, sales, production).",
-    exp3_modal_li4: "In-depth turnover analysis and detection of budget variances.",
+    exp3_modal_li1: "<strong>Monitoring</strong> and analysis of financial statements.",
+    exp3_modal_li2: "<strong>Calculation</strong> of cost prices, cost approval and inventory management.",
+    exp3_modal_li3: "<strong>Preparation</strong> and monitoring of budgets (purchases, sales, production).",
+    exp3_modal_li4: "<strong>In-depth analysis</strong> of turnover and detection of variances.",
     
     exp4_modal_title: "Software skills",
     exp4_modal_desc: "Technical expertise on a wide range of decision-making tools and ERPs.",
     exp4_modal_li1: "<strong>Power BI:</strong> Modeling, queries and Data Visualization.",
     exp4_modal_li2: "<strong>Excel:</strong> Advanced financial modeling, pivot tables, macros.",
-    exp4_modal_li3: "<strong>SAP / Navision / QAD / ACD:</strong> Daily use and data extraction from these ERPs.",
+    exp4_modal_li3: "<strong>SAP / Navision / QAD / ACD:</strong> Daily use and data extraction.",
     exp4_modal_li4: "<strong>Cognos & Selligent:</strong> Reporting and marketing automation tools."
   },
   ar: {
@@ -1108,7 +1254,7 @@ const translations = {
     about_title: "نبذة عني",
     about_text: "محترف ذو خبرة في قيادة الفعالية وتحليل البيانات ومراقبة التصرف وذكاء الأعمال. تقوم خبرتي على تصميم لوحات القيادة واتخاذ القرارات وأتمتة التقارير ومواكبة مشاريع التحسين المستمر.",
     expertise_title: "مجالات الخبرة",
-    exp1_title: "قيادة الفعالية",
+    exp1_title: "قيادة الفعالية التشغيلية",
     exp1_text: "مؤشرات الأداء، التقارير، الميزانيات، التحليلات الاستراتيجية.",
     exp2_title: "ذكاء الأعمال",
     exp2_text: "Power BI، DAX، تصور البيانات، التقارير.",
@@ -1141,32 +1287,32 @@ const translations = {
     footer_text: "© 2026 عفيف بومنديل | خبير في قيادة الفعالية وذكاء الأعمال. جميع الحقوق محفوظة.",
     
     /* Modales AR */
-    exp1_modal_title: "قيادة الفعالية",
+    exp1_modal_title: "قيادة الفعالية التشغيلية",
     exp1_modal_desc: "إنشاء لوحات قيادة ديناميكية لتوجيه الكفاءة التشغيلية والمالية.",
-    exp1_modal_li1: "تطوير ومتابعة مؤشرات الأداء الاستراتيجية (آجال الدفع، الميزان العمري، التحصيلات، نسبة الإلغاء، الإنتاجية).",
-    exp1_modal_li2: "إعداد تقارير دورية (أسبوعية، شهرية، ربع سنوية) للإدارات المالية والتشغيلية.",
-    exp1_modal_li3: "تحليل الفروقات، تحديد الحالات الشاذة ووضع خطط للتحسين.",
-    exp1_modal_li4: "مواكبة الإدارات في تحقيق أهدافها.",
+    exp1_modal_li1: "<strong>تحديد</strong> ومتابعة مؤشرات الأداء الاستراتيجية.",
+    exp1_modal_li2: "<strong>إنتاج</strong> تقارير دورية موثوقة وذات صلة.",
+    exp1_modal_li3: "<strong>تحليل</strong> الفروقات، تحديد الحالات الشاذة وتنفيذ خطط التحسين.",
+    exp1_modal_li4: "<strong>مواكبة</strong> الإدارات في تحقيق أهدافها.",
     
     exp2_modal_title: "ذكاء الأعمال",
     exp2_modal_desc: "إتقان كامل لسلسلة قيمة البيانات، من المصدر إلى اتخاذ القرار.",
-    exp2_modal_li1: "<strong>Power BI:</strong> تطوير كامل، من استخراج ونمذجة البيانات (الاستعلامات) إلى إنشاء تقارير تفاعلية ومرئية.",
+    exp2_modal_li1: "<strong>Power BI:</strong> تطوير كامل، من استخراج ونمذجة البيانات إلى إنشاء تقارير تفاعلية.",
     exp2_modal_li2: "<strong>DAX:</strong> إنشاء مقاييس معقدة وحسابات تحليلية متقدمة.",
     exp2_modal_li3: "<strong>تصور البيانات:</strong> تصميم لوحات قيادة لاتخاذ القرارات مريحة وفعالة.",
-    exp2_modal_li4: "<strong>التقارير والتحليل:</strong> أتمتة عمليات إعداد التقارير والتحليلات المتقاطعة (باريتو، تحليلات الربحية، إلخ).",
+    exp2_modal_li4: "<strong>التقارير والتحليل:</strong> أتمتة عمليات إعداد التقارير والتحليلات المتقاطعة.",
     
     exp3_modal_title: "مراقبة التصرف",
     exp3_modal_desc: "تحسين الفعالية المالية وإدارة الميزانية.",
-    exp3_modal_li1: "متابعة وتحليل البيانات المالية (SIG، دفتر اليومية، الميزان، الميزانية العمومية).",
-    exp3_modal_li2: "حساب تكلفة الإنتاج، المصادقة على التكاليف (الشحن، المشتريات) وإدارة المخزون.",
-    exp3_modal_li3: "إعداد ومتابعة الميزانيات (المشتريات، المبيعات، الإنتاج).",
-    exp3_modal_li4: "تحليل معمق لرقم الأعمال والكشف عن الانحرافات في الميزانية.",
+    exp3_modal_li1: "<strong>متابعة</strong> وتحليل البيانات المالية.",
+    exp3_modal_li2: "<strong>حساب</strong> تكلفة الإنتاج، المصادقة على التكاليف وإدارة المخزون.",
+    exp3_modal_li3: "<strong>إعداد</strong> ومتابعة الميزانيات (المشتريات، المبيعات، الإنتاج).",
+    exp3_modal_li4: "<strong>تحليل معمق</strong> لرقم الأعمال والكشف عن الانحرافات.",
     
     exp4_modal_title: "البرامج المتقنة",
     exp4_modal_desc: "خبرة تقنية في مجموعة واسعة من أدوات اتخاذ القرار وأنظمة ERP.",
     exp4_modal_li1: "<strong>Power BI:</strong> النمذجة والاستعلامات وتصور البيانات.",
     exp4_modal_li2: "<strong>Excel:</strong> النمذجة المالية المتقدمة، الجداول المحورية، وحدات الماكرو.",
-    exp4_modal_li3: "<strong>SAP / Navision / QAD / ACD:</strong> الاستخدام اليومي واستخراج البيانات من أنظمة ERP هذه.",
+    exp4_modal_li3: "<strong>SAP / Navision / QAD / ACD:</strong> الاستخدام اليومي واستخراج البيانات.",
     exp4_modal_li4: "<strong>Cognos & Selligent:</strong> أدوات إعداد التقارير وأتمتة التسويق."
   }
 };
