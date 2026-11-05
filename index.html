@@ -291,11 +291,55 @@ section{
     overflow:hidden;
     border-radius:15px;
     box-shadow:0 5px 20px rgba(0,0,0,.1);
+    background: #fff;
 }
 
+/* Modification pour rendre les images du portfolio cliquables */
 .portfolio-item img{
     width:100%;
     display:block;
+    cursor: zoom-in;
+    pointer-events: auto; /* Réactive le clic uniquement ici */
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item img:hover{
+    transform: scale(1.03);
+}
+
+/* LIGHTBOX (APERÇU) */
+
+#lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(10, 37, 64, 0.9);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+}
+
+#lightbox.active {
+    display: flex;
+}
+
+#lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    pointer-events: none;
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
 
 /* CV ACCESS */
@@ -563,23 +607,23 @@ Cognos et Selligent.
 <div class="portfolio-grid">
 
 <div class="portfolio-item">
-<img src="DB1.png" alt="">
+<img src="DB1.png" alt="Tableau de bord 1">
 </div>
 
 <div class="portfolio-item">
-<img src="DB2.png" alt="">
+<img src="DB2.png" alt="Tableau de bord 2">
 </div>
 
 <div class="portfolio-item">
-<img src="DB3.png" alt="">
+<img src="DB3.png" alt="Tableau de bord 3">
 </div>
 
 <div class="portfolio-item">
-<img src="DB4.png" alt="">
+<img src="DB4.png" alt="Tableau de bord 4">
 </div>
 
 <div class="portfolio-item">
-<img src="DB5.png" alt="">
+<img src="DB5.png" alt="Tableau de bord 5">
 </div>
 </div>
 
@@ -685,6 +729,11 @@ reporting, Power BI et pilotage de la performance.
 Tous droits réservés.
 </span>
 </footer>
+
+<!-- ===== LIGHTBOX POUR L'APERÇU DES IMAGES ===== -->
+<div id="lightbox">
+    <img id="lightbox-img" src="" alt="Aperçu">
+</div>
 
 <script>
 
@@ -893,6 +942,30 @@ document.addEventListener("DOMContentLoaded", () => {
     saved = urlLang || localStorage.getItem("siteLang") || "fr";
   } catch(e){}
   applyLanguage(saved);
+});
+
+/* ===== LIGHTBOX SCRIPT ===== */
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+const portfolioImages = document.querySelectorAll(".portfolio-item img");
+
+portfolioImages.forEach(img => {
+  img.addEventListener("click", function() {
+    lightboxImg.src = this.src;
+    lightbox.classList.add("active");
+  });
+});
+
+// Fermer l'aperçu en cliquant n'importe où sur le fond
+lightbox.addEventListener("click", function() {
+  lightbox.classList.remove("active");
+});
+
+// Fermer avec la touche Échap
+document.addEventListener("keydown", function(e) {
+  if(e.key === "Escape" && lightbox.classList.contains("active")) {
+    lightbox.classList.remove("active");
+  }
 });
 
 /* ===== PROTECTION BASIQUE ===== */
