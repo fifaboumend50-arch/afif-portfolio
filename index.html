@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Afif Boumendil | Expert en Pilotage de la Performance & Business Intelligence</title>
+<title>Afif Boumendil | Consultant Power BI & Expert Contrôle de Gestion</title>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
@@ -163,7 +163,7 @@ nav{
     font-size:1.35rem;
     margin-bottom:25px;
     font-weight:500;
-    line-height:1.5;
+    line-height:1.6;
     color:#E2E8F0;
 }
 
@@ -334,6 +334,54 @@ section{
 
 .portfolio-item img:hover{
     transform: scale(1.03);
+}
+
+/* CERTIFICATIONS (NOUVELLE SECTION) */
+
+.certifications{
+    background: var(--light);
+}
+
+.cert-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cert-card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.cert-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.cert-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid #E2E8F0;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.cert-card h3 {
+    color: var(--primary);
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.cert-card p {
+    color: #64748B;
+    font-size: 1rem;
 }
 
 /* LIGHTBOX (APERÇU IMAGES) */
@@ -648,7 +696,8 @@ html[dir="rtl"] .lang-switcher{
 }
 
 html[dir="rtl"] .card,
-html[dir="rtl"] .cv-box{
+html[dir="rtl"] .cv-box,
+html[dir="rtl"] .cert-card{
     text-align:right;
 }
 
@@ -775,8 +824,7 @@ html[dir="rtl"] .modal-title-container {
 <h1 data-i18n="hero_name">Afif Boumendil</h1>
 
 <h2 data-i18n="hero_title">
-    Expert en Pilotage de la Performance & Business Intelligence
-    <span>Contrôle de Gestion | Systèmes d'Information</span>
+    Consultant Power BI, Expert Contrôle de Gestion et pilotage de performance, Formateur certifié CNFCPP, Responsable Système d'Information.
 </h2>
 
 <p data-i18n="hero_desc">
@@ -917,6 +965,22 @@ Cognos et Selligent.
 
 </div>
 
+</section>
+
+<!-- NOUVELLE SECTION : CERTIFICATIONS -->
+<section id="certifications" class="certifications">
+    <div class="container">
+        <h2 class="section-title" data-i18n="cert_title">Badge Formateur CNFCPP</h2>
+        
+        <div class="cert-container">
+            <div class="cert-card">
+                <!-- Remplacez 'badge-formateur.jpg' par le nom exact de votre fichier si besoin -->
+                <img src="badge-formateur.jpg" alt="Badge Formateur CNFCPP">
+                <h3 data-i18n="cert_role">Formateur Agréé</h3>
+                <p data-i18n="cert_org">Certifié par le CNFCPP (Centre National de Formation Continue et de Promotion Professionnelle).</p>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section id="cv">
@@ -1182,7 +1246,7 @@ const translations = {
     nav_portfolio: "Réalisations",
     nav_contact: "Contact",
     hero_name: "Afif Boumendil",
-    hero_title: "Expert en Pilotage de la Performance & Business Intelligence\nContrôle de Gestion | Systèmes d'Information",
+    hero_title: "Consultant Power BI, Expert Contrôle de Gestion et pilotage de performance, Formateur certifié CNFCPP, Responsable Système d'Information.",
     hero_desc: "Je transforme les données complexes en tableaux de bord stratégiques interactifs et en <span class='highlight'>décisions pertinentes</span> pour accélérer la performance.",
     hero_btn1: "Mon parcours",
     hero_btn2: "Demander l'accès au CV",
@@ -1209,6 +1273,12 @@ const translations = {
     path3_role: "Contrôleur de Gestion",
     path3_desc: "Prix de revient, analyses financières et tableaux de bord.",
     portfolio_title: "Réalisations Power BI",
+    
+    /* Certifications FR */
+    cert_title: "Badge Formateur CNFCPP",
+    cert_role: "Formateur Agréé",
+    cert_org: "Certifié par le CNFCPP (Centre National de Formation Continue et de Promotion Professionnelle).",
+
     cv_title: "Demande d'accès au CV, document ou information",
     cv_name: "Nom et prénom",
     cv_company: "Société",
@@ -1266,7 +1336,7 @@ const translations = {
     nav_portfolio: "Portfolio",
     nav_contact: "Contact",
     hero_name: "Afif Boumendil",
-    hero_title: "Performance Management & Business Intelligence Expert\nManagement Control | Information Systems",
+    hero_title: "Power BI Consultant, Management Control & Performance Management Expert, CNFCPP Certified Trainer, Information System Manager.",
     hero_desc: "I turn complex data into interactive strategic dashboards and <span class='highlight'>insightful decisions</span> to accelerate performance.",
     hero_btn1: "My career",
     hero_btn2: "Request CV access",
@@ -1293,6 +1363,12 @@ const translations = {
     path3_role: "Management Controller",
     path3_desc: "Cost price, financial analysis and dashboards.",
     portfolio_title: "Power BI Portfolio",
+    
+    /* Certifications EN */
+    cert_title: "CNFCPP Trainer Badge",
+    cert_role: "Certified Trainer",
+    cert_org: "Certified by CNFCPP (National Center for Continuing Training and Professional Promotion).",
+
     cv_title: "Request for access to CV, document or information",
     cv_name: "Full name",
     cv_company: "Company",
@@ -1350,7 +1426,7 @@ const translations = {
     nav_portfolio: "الإنجازات",
     nav_contact: "اتصل بي",
     hero_name: "عفيف بومنديل",
-    hero_title: "خبير في قيادة الفعالية وذكاء الأعمال\nمراقبة التصرف | أنظمة المعلومات",
+    hero_title: "مستشار Power BI، خبير في مراقبة التصرف وقيادة الفعالية، مكوّن معتمد من CNFCPP، ومسؤول أنظمة المعلومات.",
     hero_desc: "أحوّل البيانات المعقدة إلى لوحات قيادة استراتيجية تفاعلية و<span class='highlight'>قرارات رشيدة</span> لتسريع الفعالية.",
     hero_btn1: "مساري المهني",
     hero_btn2: "طلب الوصول إلى السيرة الذاتية",
@@ -1377,6 +1453,12 @@ const translations = {
     path3_role: "مراقب تصرف",
     path3_desc: "تكلفة الإنتاج، التحليلات المالية ولوحات القيادة.",
     portfolio_title: "إنجازات Power BI",
+    
+    /* Certifications AR */
+    cert_title: "شارة مكوّن معتمد CNFCPP",
+    cert_role: "مكوّن معتمد",
+    cert_org: "معتمد من المركز الوطني للتكوين المستمر والترقية المهنية (CNFCPP).",
+
     cv_title: "طلب الوصول إلى السيرة الذاتية، وثيقة أو معلومة",
     cv_name: "الاسم واللقب",
     cv_company: "الشركة",
