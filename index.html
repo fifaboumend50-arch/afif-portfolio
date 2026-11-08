@@ -357,6 +357,7 @@ section{
     width: 100%;
     text-align: center;
     transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
 .cert-card:hover {
@@ -973,8 +974,8 @@ Cognos et Selligent.
         <h2 class="section-title" data-i18n="cert_title">Badge Formateur CNFCPP</h2>
         
         <div class="cert-container">
-            <div class="cert-card">
-                <!-- Remplacez 'badge-formateur.jpg' par le nom exact de votre fichier si besoin -->
+            <!-- Ajout du onclick pour ouvrir la modale -->
+            <div class="cert-card" onclick="openModal('modal-cert')">
                 <img src="badge-formateur.jpg" alt="Badge Formateur CNFCPP">
                 <h3 data-i18n="cert_role">Formateur Agréé</h3>
                 <p data-i18n="cert_org">Certifié par le CNFCPP (Centre National de Formation Continue et de Promotion Professionnelle).</p>
@@ -1080,7 +1081,7 @@ Tous droits réservés.
 
 <!-- ===== MODALES POUR LES DOMAINES D'EXPERTISE ===== -->
 
-<!-- Modale 1 : Pilotage (Design standard) -->
+<!-- Modale 1 : Pilotage -->
 <div id="modal-exp1" class="expertise-modal">
     <div class="modal-content">
         <span class="close-modal" onclick="closeModal('modal-exp1')">&times;</span>
@@ -1115,7 +1116,7 @@ Tous droits réservés.
     </div>
 </div>
 
-<!-- Modale 2 : Business Intelligence (Design standard) -->
+<!-- Modale 2 : Business Intelligence -->
 <div id="modal-exp2" class="expertise-modal">
     <div class="modal-content">
         <span class="close-modal" onclick="closeModal('modal-exp2')">&times;</span>
@@ -1127,7 +1128,7 @@ Tous droits réservés.
             </div>
         </div>
 
-        <p class="modal-desc" data-i18n="exp2_modal_desc">Maîtrise complète de la chaîne de valeur de la donnée, de la source à la prise de décision.</p>
+        <p class="modal-desc" data-i18n="exp2_modal_desc">Maîtrise complète de la chaîne de valeur de la donnée, de la base de données à la prise de décision.</p>
         
         <ul class="modal-list">
             <li>
@@ -1136,11 +1137,11 @@ Tous droits réservés.
             </li>
             <li>
                 <div class="list-icon"><i class="fas fa-calculator"></i></div>
-                <div class="list-text" data-i18n="exp2_modal_li2"><strong>DAX :</strong> Création de mesures complexes et calculs analytiques avancés.</div>
+                <div class="list-text" data-i18n="exp2_modal_li2"><strong>DAX :</strong> Création de mesures analytiques avancées.</div>
             </li>
             <li>
                 <div class="list-icon"><i class="fas fa-palette"></i></div>
-                <div class="list-text" data-i18n="exp2_modal_li3"><strong>Data Visualisation :</strong> Conception de tableaux de bord décisionnels ergonomiques et percutants.</div>
+                <div class="list-text" data-i18n="exp2_modal_li3"><strong>Data Visualisation :</strong> Conception de tableaux de bord décisionnels.</div>
             </li>
             <li>
                 <div class="list-icon"><i class="fas fa-file-alt"></i></div>
@@ -1150,7 +1151,7 @@ Tous droits réservés.
     </div>
 </div>
 
-<!-- Modale 3 : Contrôle de Gestion (NOUVEAU DESIGN AVEC BADGES) -->
+<!-- Modale 3 : Contrôle de Gestion (Design à 3 colonnes) -->
 <div id="modal-exp3" class="expertise-modal">
     <div class="modal-content">
         <span class="close-modal" onclick="closeModal('modal-exp3')">&times;</span>
@@ -1199,7 +1200,7 @@ Tous droits réservés.
     </div>
 </div>
 
-<!-- Modale 4 : Logiciels (Design standard) -->
+<!-- Modale 4 : Logiciels -->
 <div id="modal-exp4" class="expertise-modal">
     <div class="modal-content">
         <span class="close-modal" onclick="closeModal('modal-exp4')">&times;</span>
@@ -1231,6 +1232,25 @@ Tous droits réservés.
                 <div class="list-text" data-i18n="exp4_modal_li4"><strong>Cognos & Selligent :</strong> Outils de reporting et de marketing automation.</div>
             </li>
         </ul>
+    </div>
+</div>
+
+<!-- NOUVELLE MODALE : Badge Formateur -->
+<div id="modal-cert" class="expertise-modal">
+    <div class="modal-content" style="text-align: center; max-width: 600px;">
+        <span class="close-modal" onclick="closeModal('modal-cert')">&times;</span>
+        
+        <div class="modal-header" style="justify-content: center; border-bottom: none; margin-bottom: 20px;">
+            <div class="modal-title-container" style="border: none; padding: 0; text-align: center;">
+                <h3 data-i18n="cert_title" style="font-size: 1.6rem; display: inline-block; border-bottom: 3px solid var(--secondary); padding-bottom: 5px;">Badge Formateur CNFCPP</h3>
+            </div>
+        </div>
+
+        <!-- Remplacez 'badge-formateur.jpg' par le nom exact de votre fichier -->
+        <img src="badge-formateur.jpg" alt="Badge Formateur CNFCPP" style="width: 100%; max-width: 450px; border-radius: 10px; border: 1px solid #E2E8F0; margin: 0 auto 20px auto; display: block; pointer-events: none;">
+        
+        <h4 data-i18n="cert_role" style="color: var(--primary); font-size: 1.4rem; margin-bottom: 10px;">Formateur Agréé</h4>
+        <p data-i18n="cert_org" style="color: #475569; font-size: 1.1rem;">Certifié par le CNFCPP (Centre National de Formation Continue et de Promotion Professionnelle).</p>
     </div>
 </div>
 
@@ -1303,10 +1323,10 @@ const translations = {
     exp1_modal_li4: "<strong>Accompagnement</strong> des directions dans l'atteinte de leurs objectifs.",
     
     exp2_modal_title: "Business Intelligence",
-    exp2_modal_desc: "Maîtrise complète de la chaîne de valeur de la donnée, de la source à la prise de décision.",
+    exp2_modal_desc: "Maîtrise complète de la chaîne de valeur de la donnée, de la base de données à la prise de décision.",
     exp2_modal_li1: "<strong>Power BI :</strong> Développement complet, de l'extraction et modélisation des données jusqu'à la création de rapports interactifs.",
-    exp2_modal_li2: "<strong>DAX :</strong> Création de mesures complexes et calculs analytiques avancés.",
-    exp2_modal_li3: "<strong>Data Visualisation :</strong> Conception de tableaux de bord décisionnels ergonomiques et percutants.",
+    exp2_modal_li2: "<strong>DAX :</strong> Création de mesures analytiques avancées.",
+    exp2_modal_li3: "<strong>Data Visualisation :</strong> Conception de tableaux de bord décisionnels.",
     exp2_modal_li4: "<strong>Reporting & Analyse :</strong> Automatisation des processus de reporting et analyses croisées.",
     
     exp3_modal_title: "Contrôle de Gestion",
@@ -1393,10 +1413,10 @@ const translations = {
     exp1_modal_li4: "<strong>Supporting</strong> management in achieving their objectives.",
     
     exp2_modal_title: "Business Intelligence",
-    exp2_modal_desc: "Complete mastery of the data value chain, from source to decision-making.",
+    exp2_modal_desc: "Complete mastery of the data value chain, from database to decision-making.",
     exp2_modal_li1: "<strong>Power BI:</strong> Full development, from data extraction and modeling to the creation of interactive reports.",
-    exp2_modal_li2: "<strong>DAX:</strong> Creation of complex measures and advanced analytical calculations.",
-    exp2_modal_li3: "<strong>Data Visualization:</strong> Design of ergonomic and impactful decision-making dashboards.",
+    exp2_modal_li2: "<strong>DAX:</strong> Creation of advanced analytical measures.",
+    exp2_modal_li3: "<strong>Data Visualization:</strong> Design of decision-making dashboards.",
     exp2_modal_li4: "<strong>Reporting & Analysis:</strong> Automation of reporting processes and cross-analysis.",
     
     exp3_modal_title: "Management Control",
@@ -1426,17 +1446,17 @@ const translations = {
     nav_portfolio: "الإنجازات",
     nav_contact: "اتصل بي",
     hero_name: "عفيف بومنديل",
-    hero_title: "مستشار Power BI، خبير في مراقبة التصرف وقيادة الفعالية، مكوّن معتمد من CNFCPP، ومسؤول أنظمة المعلومات.",
-    hero_desc: "أحوّل البيانات المعقدة إلى لوحات قيادة استراتيجية تفاعلية و<span class='highlight'>قرارات رشيدة</span> لتسريع الفعالية.",
+    hero_title: "مستشار Power BI، خبير في مراقبة التصرف وقيادة الأداء، مكوّن معتمد من CNFCPP، ومسؤول أنظمة المعلومات.",
+    hero_desc: "أحوّل البيانات المعقدة إلى لوحات قيادة استراتيجية تفاعلية و<span class='highlight'>قرارات رشيدة</span> لتسريع الأداء.",
     hero_btn1: "مساري المهني",
     hero_btn2: "طلب الوصول إلى السيرة الذاتية",
     about_title: "نبذة عني",
-    about_text: "محترف ذو خبرة في قيادة الفعالية وتحليل البيانات ومراقبة التصرف وذكاء الأعمال. تقوم خبرتي على تصميم لوحات القيادة واتخاذ القرارات وأتمتة التقارير ومواكبة مشاريع التحسين المستمر.",
+    about_text: "محترف ذو خبرة في قيادة الأداء وتحليل البيانات ومراقبة التصرف وتحليل الأعمال. تقوم خبرتي على تصميم لوحات القيادة واتخاذ القرارات وأتمتة التقارير ومواكبة مشاريع التحسين المستمر.",
     expertise_title: "مجالات الخبرة",
-    exp1_title: "قيادة الفعالية التشغيلية",
+    exp1_title: "قيادة الأداء التشغيلية",
     exp1_text: "مؤشرات الأداء، التقارير، الميزانيات، التحليلات الاستراتيجية.",
-    exp2_title: "ذكاء الأعمال",
-    exp2_text: "Power BI، DAX، تصور البيانات، التقارير.",
+    exp2_title: "تحليل الأعمال",
+    exp2_text: "Power BI، DAX، عرض البيانات، التقارير.",
     exp3_title: "مراقبة التصرف",
     exp3_text: "تكلفة الإنتاج، الربحية، الميزانيات.",
     exp4_title: "البرامج المتقنة",
@@ -1468,43 +1488,43 @@ const translations = {
     cv_submit: "إرسال الطلب",
     contact_title: "اتصل بي",
     contact_linkedin: "ملفي على LinkedIn",
-    contact_location: "تونس - تونس\nمتاح للمهام والمواكبة والتقارير وPower BI وقيادة الفعالية.",
-    footer_text: "© 2026 عفيف بومنديل | خبير في قيادة الفعالية وذكاء الأعمال. جميع الحقوق محفوظة.",
+    contact_location: "تونس - تونس\nمتاح للمهام والمواكبة والتقارير وPower BI وقيادة الأداء.",
+    footer_text: "© 2026 عفيف بومنديل | خبير في قيادة الأداء وتحليل الأعمال. جميع الحقوق محفوظة.",
     
     badge_practical: "عملي",
     badge_theoretical: "نظري",
 
     /* Modales AR */
-    exp1_modal_title: "قيادة الفعالية التشغيلية",
+    exp1_modal_title: "قيادة الأداء التشغيلية",
     exp1_modal_desc: "إنشاء لوحات قيادة ديناميكية لتوجيه الكفاءة التشغيلية والمالية.",
     exp1_modal_li1: "<strong>تحديد</strong> ومتابعة مؤشرات الأداء الاستراتيجية.",
     exp1_modal_li2: "<strong>إنتاج</strong> تقارير دورية موثوقة وذات صلة.",
-    exp1_modal_li3: "<strong>تحليل</strong> الفروقات، تحديد الحالات الشاذة وتنفيذ خطط التحسين.",
+    exp1_modal_li3: "<strong>تحليل</strong> الفروقات، كشف الخلل وتنفيذ خطط التحسين.",
     exp1_modal_li4: "<strong>مواكبة</strong> الإدارات في تحقيق أهدافها.",
     
-    exp2_modal_title: "ذكاء الأعمال",
-    exp2_modal_desc: "إتقان كامل لسلسلة قيمة البيانات، من المصدر إلى اتخاذ القرار.",
+    exp2_modal_title: "تحليل الأعمال",
+    exp2_modal_desc: "إتقان سلسلة قيمة البيانات، من قاعدة البيانات إلى اتخاذ القرار.",
     exp2_modal_li1: "<strong>Power BI:</strong> تطوير كامل، من استخراج ونمذجة البيانات إلى إنشاء تقارير تفاعلية.",
-    exp2_modal_li2: "<strong>DAX:</strong> إنشاء مقاييس معقدة وحسابات تحليلية متقدمة.",
-    exp2_modal_li3: "<strong>تصور البيانات:</strong> تصميم لوحات قيادة لاتخاذ القرارات مريحة وفعالة.",
+    exp2_modal_li2: "<strong>DAX:</strong> إنشاء مقاييس تحليلية متقدمة.",
+    exp2_modal_li3: "<strong>عرض البيانات:</strong> تصميم لوحات قيادة لاتخاذ القرارات.",
     exp2_modal_li4: "<strong>التقارير والتحليل:</strong> أتمتة عمليات إعداد التقارير والتحليلات المتقاطعة.",
     
     exp3_modal_title: "مراقبة التصرف",
-    exp3_modal_desc: "تحسين الفعالية الشاملة من خلال التحليل المالي، وقيادة الأنشطة، ودعم اتخاذ القرار.",
+    exp3_modal_desc: "تحسين الأداء الشامل من خلال التحليل المالي، وقيادة الأنشطة، ودعم اتخاذ القرار.",
     exp3_modal_li1: "مراقبة التصرف التجاري",
-    exp3_modal_li1_desc: "تحليل الفعالية التجارية، متابعة رقم الأعمال، الهوامش والربحية.",
+    exp3_modal_li1_desc: "تحليل الأداء التجاري، متابعة الإيرادات، الهوامش والربحية.",
     exp3_modal_li2: "مراقبة التصرف الصناعي",
-    exp3_modal_li2_desc: "تحليل تكاليف الإنتاج، متابعة تكلفة الإنتاج، التحكم في النفقات وتحسين الفعالية التشغيلية.",
+    exp3_modal_li2_desc: "تحليل تكاليف الإنتاج، متابعة تكلفة الإنتاج، التحكم في النفقات وتحسين الأداء التشغيلي.",
     exp3_modal_li3: "مراقبة التصرف الاجتماعي",
-    exp3_modal_li3_desc: "متابعة وتحليل كتلة الأجور، مؤشرات الموارد البشرية والفعالية الاجتماعية.",
+    exp3_modal_li3_desc: "متابعة وتحليل الرواتب الإجمالية، مؤشرات الموارد البشرية والأداء الاجتماعي.",
     exp3_modal_li4: "مراقبة التصرف المالي",
-    exp3_modal_li4_desc: "إدارة الميزانية، تحليل الانحرافات، متابعة الربحية وتقييم الفعالية المالية.",
+    exp3_modal_li4_desc: "إدارة الميزانية، تحليل الفجوات، متابعة الربحية وتقييم الأداء المالي.",
     exp3_modal_li5: "المحاسبة والتحليل المالي",
     exp3_modal_li5_desc: "استغلال البيانات المحاسبية، تحليل البيانات المالية والمساهمة في موثوقية المعلومات المالية.",
     
     exp4_modal_title: "البرامج المتقنة",
     exp4_modal_desc: "خبرة تقنية في مجموعة واسعة من أدوات اتخاذ القرار وأنظمة ERP.",
-    exp4_modal_li1: "<strong>Power BI:</strong> النمذجة والاستعلامات وتصور البيانات.",
+    exp4_modal_li1: "<strong>Power BI:</strong> النمذجة، الاستعلامات وعرض البيانات.",
     exp4_modal_li2: "<strong>Excel:</strong> النمذجة المالية المتقدمة، الجداول المحورية، وحدات الماكرو.",
     exp4_modal_li3: "<strong>SAP / Navision / QAD / ACD:</strong> الاستخدام اليومي واستخراج البيانات.",
     exp4_modal_li4: "<strong>Cognos & Selligent:</strong> أدوات إعداد التقارير وأتمتة التسويق."
