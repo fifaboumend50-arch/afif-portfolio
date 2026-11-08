@@ -350,7 +350,7 @@ section{
 
 .cert-card {
     background: white;
-    padding: 20px;
+    padding: 40px 30px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     max-width: 450px;
@@ -365,24 +365,38 @@ section{
     box-shadow: 0 15px 40px rgba(0,0,0,0.15);
 }
 
-.cert-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    border: 1px solid #E2E8F0;
-    display: block;
-    margin-bottom: 20px;
+.cert-card .cert-icon-large {
+    font-size: 3.5rem;
+    color: var(--secondary);
+    margin-bottom: 15px;
 }
 
 .cert-card h3 {
     color: var(--primary);
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     margin-bottom: 10px;
 }
 
 .cert-card p {
     color: #64748B;
     font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.cert-card .btn-view {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #F0F7FF;
+    color: var(--secondary);
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.cert-card:hover .btn-view {
+    background-color: var(--secondary);
+    color: white;
 }
 
 /* LIGHTBOX (APERÇU IMAGES) */
@@ -974,11 +988,11 @@ Cognos et Selligent.
         <h2 class="section-title" data-i18n="cert_title">Badge Formateur CNFCPP</h2>
         
         <div class="cert-container">
-            <!-- Ajout du onclick pour ouvrir la modale -->
             <div class="cert-card" onclick="openModal('modal-cert')">
-                <img src="badge-formateur.jpg" alt="Badge Formateur CNFCPP">
+                <i class="fas fa-certificate cert-icon-large"></i>
                 <h3 data-i18n="cert_role">Formateur Agréé</h3>
                 <p data-i18n="cert_org">Certifié par le CNFCPP (Centre National de Formation Continue et de Promotion Professionnelle).</p>
+                <div class="btn-view"><i class="fas fa-eye"></i> <span data-i18n="cert_view_badge">Voir le badge</span></div>
             </div>
         </div>
     </div>
@@ -1235,7 +1249,7 @@ Tous droits réservés.
     </div>
 </div>
 
-<!-- NOUVELLE MODALE : Badge Formateur -->
+<!-- MODALE BADGE : Badge Formateur -->
 <div id="modal-cert" class="expertise-modal">
     <div class="modal-content" style="text-align: center; max-width: 600px;">
         <span class="close-modal" onclick="closeModal('modal-cert')">&times;</span>
@@ -1246,8 +1260,8 @@ Tous droits réservés.
             </div>
         </div>
 
-        <!-- Remplacez 'badge-formateur.jpg' par le nom exact de votre fichier -->
-        <img src="badge-formateur.jpg" alt="Badge Formateur CNFCPP" style="width: 100%; max-width: 450px; border-radius: 10px; border: 1px solid #E2E8F0; margin: 0 auto 20px auto; display: block; pointer-events: none;">
+        <!-- L'image avec le nom exact corrigé -->
+        <img src="Badge-CNFCPP.jpg" alt="Badge Formateur CNFCPP" style="width: 100%; max-width: 450px; border-radius: 10px; border: 1px solid #E2E8F0; margin: 0 auto 20px auto; display: block; pointer-events: none;">
         
         <h4 data-i18n="cert_role" style="color: var(--primary); font-size: 1.4rem; margin-bottom: 10px;">Formateur Agréé</h4>
         <p data-i18n="cert_org" style="color: #475569; font-size: 1.1rem;">Certifié par le CNFCPP (Centre National de Formation Continue et de Promotion Professionnelle).</p>
@@ -1298,6 +1312,7 @@ const translations = {
     cert_title: "Badge Formateur CNFCPP",
     cert_role: "Formateur Agréé",
     cert_org: "Certifié par le CNFCPP (Centre National de Formation Continue et de Promotion Professionnelle).",
+    cert_view_badge: "Voir le badge",
 
     cv_title: "Demande d'accès au CV, document ou information",
     cv_name: "Nom et prénom",
@@ -1388,6 +1403,7 @@ const translations = {
     cert_title: "CNFCPP Trainer Badge",
     cert_role: "Certified Trainer",
     cert_org: "Certified by CNFCPP (National Center for Continuing Training and Professional Promotion).",
+    cert_view_badge: "View badge",
 
     cv_title: "Request for access to CV, document or information",
     cv_name: "Full name",
@@ -1478,6 +1494,7 @@ const translations = {
     cert_title: "شارة مكوّن معتمد CNFCPP",
     cert_role: "مكوّن معتمد",
     cert_org: "معتمد من المركز الوطني للتكوين المستمر والترقية المهنية (CNFCPP).",
+    cert_view_badge: "عرض الشارة",
 
     cv_title: "طلب الوصول إلى السيرة الذاتية، وثيقة أو معلومة",
     cv_name: "الاسم واللقب",
