@@ -41,7 +41,48 @@ body{
     background:#fff;
 }
 
-/* NAVBAR */
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card, .portfolio-item, .cert-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover, .portfolio-item:hover, .cert-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(17, 141, 255, 0.2);
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(242, 201, 76, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(242, 201, 76, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(242, 201, 76, 0); }
+}
+
+.btn-primary {
+    animation: pulse 2.5s infinite;
+}
+
+/* =========================================
+   NAVBAR
+   ========================================= */
 
 nav{
     position:fixed;
@@ -142,6 +183,7 @@ nav{
 
 .hero-content{
     max-width:950px;
+    animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
 .hero img{
@@ -158,7 +200,6 @@ nav{
     margin-bottom:10px;
 }
 
-/* AMÉLIORATION DU TEXTE HERO */
 .hero h2{
     font-size:1.35rem;
     margin-bottom:25px;
@@ -189,7 +230,7 @@ nav{
     font-weight:600;
 }
 
-/* FIN AMÉLIORATION HERO */
+/* BOUTONS */
 
 .btn{
     display:inline-block;
@@ -217,7 +258,7 @@ nav{
 }
 
 .btn:hover{
-    transform:translateY(-3px);
+    transform:translateY(-3px) scale(1.05);
 }
 
 /* SECTION */
@@ -257,14 +298,8 @@ section{
     padding:25px;
     border-radius:15px;
     box-shadow:0 5px 20px rgba(0,0,0,.08);
-    transition:.3s;
     cursor:pointer;
     position:relative;
-}
-
-.card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 8px 25px rgba(17, 141, 255, 0.15);
 }
 
 .card i{
@@ -294,19 +329,73 @@ section{
     transform: translateX(5px);
 }
 
-/* TIMELINE */
+/* TIMELINE (PARCOURS) */
 
 .timeline{
     border-left:4px solid var(--secondary);
     padding-left:25px;
+    position: relative;
 }
 
 .timeline-item{
     margin-bottom:40px;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -33px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--secondary);
+    border: 3px solid white;
+    box-shadow: 0 0 0 3px var(--light);
 }
 
 .timeline-item h3{
     color:var(--primary);
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.timeline-company {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--secondary);
+    margin-bottom: 5px;
+}
+
+.timeline-date {
+    font-size: 0.9rem;
+    color: #64748B;
+    font-style: italic;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.timeline-item ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.timeline-item li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    color: #334155;
+    font-size: 0.95rem;
+}
+
+.timeline-item li::before {
+    content: "•";
+    color: var(--accent);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 /* PORTFOLIO */
@@ -329,14 +418,14 @@ section{
     display:block;
     cursor: zoom-in;
     pointer-events: auto;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease;
 }
 
-.portfolio-item img:hover{
-    transform: scale(1.03);
+.portfolio-item:hover img {
+    transform: scale(1.08);
 }
 
-/* CERTIFICATIONS (NOUVELLE SECTION) */
+/* CERTIFICATIONS */
 
 .certifications{
     background: var(--light);
@@ -356,13 +445,7 @@ section{
     max-width: 450px;
     width: 100%;
     text-align: center;
-    transition: transform 0.3s ease;
     cursor: pointer;
-}
-
-.cert-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
 }
 
 .cert-card .cert-icon-large {
@@ -463,14 +546,14 @@ section{
     width: 100%;
     position: relative;
     box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-    animation: slideUp 0.3s ease;
+    animation: slideUp 0.4s ease-out;
     color: var(--text);
     max-height: 90vh;
     overflow-y: auto;
 }
 
 @keyframes slideUp {
-    from { transform: translateY(30px); opacity: 0; }
+    from { transform: translateY(40px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
 }
 
@@ -486,6 +569,7 @@ section{
 
 .close-modal:hover {
     color: #0F172A;
+    transform: rotate(90deg);
 }
 
 /* En-tête de la modale (Icône + Titre) */
@@ -531,7 +615,7 @@ html[dir="rtl"] .modal-title-container {
     line-height: 1.6;
 }
 
-/* Liste standard (Pilotage, BI, Logiciels) */
+/* Liste standard */
 .modal-list {
     list-style: none;
     padding: 0;
@@ -576,7 +660,7 @@ html[dir="rtl"] .modal-title-container {
     color: var(--primary);
 }
 
-/* Liste spécifique Contrôle de Gestion (avec Badges) */
+/* Liste spécifique Contrôle de Gestion */
 .modal-list-custom {
     list-style: none;
     padding: 0;
@@ -651,6 +735,7 @@ html[dir="rtl"] .list-desc {
     border-radius:20px;
     padding:40px;
     text-align:center;
+    box-shadow: 0 15px 40px rgba(10, 37, 64, 0.2);
 }
 
 form{
@@ -665,6 +750,12 @@ input, textarea{
     border-radius:8px;
     font-family:inherit;
     font-size:1rem;
+    transition: 0.3s;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--secondary);
 }
 
 /* FOOTER */
@@ -677,7 +768,6 @@ footer{
 }
 
 /* Protection basique */
-
 img{
     pointer-events:none;
     user-select:none;
@@ -689,7 +779,6 @@ body{
 }
 
 /* RTL POUR L'ARABE */
-
 html[dir="rtl"] body{
     font-family:'Segoe UI', Tahoma, sans-serif;
 }
@@ -699,6 +788,21 @@ html[dir="rtl"] .timeline{
     border-right:4px solid var(--secondary);
     padding-left:0;
     padding-right:25px;
+}
+
+html[dir="rtl"] .timeline-item::before {
+    left: auto;
+    right: -33px;
+}
+
+html[dir="rtl"] .timeline-item li {
+    padding-left: 0;
+    padding-right: 20px;
+}
+
+html[dir="rtl"] .timeline-item li::before {
+    left: auto;
+    right: 0;
 }
 
 html[dir="rtl"] .nav-links{
@@ -730,65 +834,29 @@ html[dir="rtl"] .card:hover .click-hint {
 }
 
 @media(max-width:768px){
+    .hero h1{ font-size:2rem; }
+    .hero h2{ font-size:1.1rem; }
+    .hero p{ font-size:1rem; }
+    .nav-container{ flex-wrap:wrap; justify-content:center; }
+    .nav-links{ display:none; }
+    .lang-switcher{ margin-left:0; }
+    .modal-content { padding: 25px; }
+    .modal-header { flex-direction: column; align-items: flex-start; gap: 15px; }
+    .modal-title-container { border-left: none; padding-left: 0; width: 100%; }
+    html[dir="rtl"] .modal-title-container { padding-right: 0; }
 
-.hero h1{
-    font-size:2rem;
-}
-
-.hero h2{
-    font-size:1.1rem;
-}
-
-.hero p{
-    font-size:1rem;
-}
-
-.nav-container{
-    flex-wrap:wrap;
-    justify-content:center;
-}
-
-.nav-links{
-    display:none;
-}
-
-.lang-switcher{
-    margin-left:0;
-}
-
-.modal-content {
-    padding: 25px;
-}
-
-.modal-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-}
-
-.modal-title-container {
-    border-left: none;
-    padding-left: 0;
-    width: 100%;
-}
-
-html[dir="rtl"] .modal-title-container {
-    padding-right: 0;
-}
-
-/* Responsive pour la liste à 3 colonnes (Contrôle de Gestion) */
-.modal-list-custom li {
-    grid-template-columns: 50px 1fr;
-    grid-template-areas: 
-        "icon title"
-        "icon badge"
-        "desc desc";
-}
-
-.list-icon { grid-area: icon; align-self: start; }
-.list-title { grid-area: title; }
-.badge { grid-area: badge; margin-top: 5px; }
-.list-desc { grid-area: desc; border-left: none; padding-left: 0; margin-top: 10px; border-top: 1px solid #F1F5F9; padding-top: 10px; }
+    /* Responsive pour la liste à 3 colonnes */
+    .modal-list-custom li {
+        grid-template-columns: 50px 1fr;
+        grid-template-areas: 
+            "icon title"
+            "icon badge"
+            "desc desc";
+    }
+    .list-icon { grid-area: icon; align-self: start; }
+    .list-title { grid-area: title; }
+    .badge { grid-area: badge; margin-top: 5px; }
+    .list-desc { grid-area: desc; border-left: none; padding-left: 0; margin-top: 10px; border-top: 1px solid #F1F5F9; padding-top: 10px; }
 }
 
 </style>
@@ -859,7 +927,7 @@ Demander l'accès au CV
 </section>
 
 <section id="apropos" class="about">
-<div class="container">
+<div class="container reveal">
 <h2 class="section-title" data-i18n="about_title">À propos</h2>
 
 <p style="text-align:center;max-width:900px;margin:auto;" data-i18n="about_text">
@@ -875,12 +943,12 @@ l'automatisation du reporting et l'accompagnement des projets d'amélioration co
 <section id="expertise">
 <div class="container">
 
-<h2 class="section-title" data-i18n="expertise_title">Domaines d'Expertise</h2>
+<h2 class="section-title reveal" data-i18n="expertise_title">Domaines d'Expertise</h2>
 
 <div class="grid">
 
 <!-- CARTE 1 -->
-<div class="card" onclick="openModal('modal-exp1')">
+<div class="card reveal" onclick="openModal('modal-exp1')">
 <i class="fas fa-chart-line"></i>
 <h3 data-i18n="exp1_title">Pilotage de la performance opérationnelle</h3>
 <p data-i18n="exp1_text">KPI, Reporting, Budgets, Analyses stratégiques.</p>
@@ -888,7 +956,7 @@ l'automatisation du reporting et l'accompagnement des projets d'amélioration co
 </div>
 
 <!-- CARTE 2 -->
-<div class="card" onclick="openModal('modal-exp2')">
+<div class="card reveal" onclick="openModal('modal-exp2')">
 <i class="fas fa-chart-pie"></i>
 <h3 data-i18n="exp2_title">Business Intelligence</h3>
 <p data-i18n="exp2_text">Power BI, DAX, Data Visualisation, Reporting.</p>
@@ -896,7 +964,7 @@ l'automatisation du reporting et l'accompagnement des projets d'amélioration co
 </div>
 
 <!-- CARTE 3 -->
-<div class="card" onclick="openModal('modal-exp3')">
+<div class="card reveal" onclick="openModal('modal-exp3')">
 <i class="fas fa-coins"></i>
 <h3 data-i18n="exp3_title">Contrôle de Gestion</h3>
 <p data-i18n="exp3_text">Prix de revient, Rentabilité, Budgets.</p>
@@ -904,7 +972,7 @@ l'automatisation du reporting et l'accompagnement des projets d'amélioration co
 </div>
 
 <!-- CARTE 4 -->
-<div class="card" onclick="openModal('modal-exp4')">
+<div class="card reveal" onclick="openModal('modal-exp4')">
 <i class="fas fa-database"></i>
 <h3 data-i18n="exp4_title">Logiciels maîtrisés</h3>
 <p data-i18n="exp4_text">
@@ -922,27 +990,71 @@ Cognos et Selligent.
 <section id="parcours">
 <div class="container">
 
-<h2 class="section-title" data-i18n="path_title">Parcours Professionnel</h2>
+<h2 class="section-title reveal" data-i18n="path_title">Parcours Professionnel</h2>
 
-<div class="timeline">
+<div class="timeline reveal">
+    <!-- SOGECC -->
+    <div class="timeline-item">
+        <h3 data-i18n="path1_role">Contrôleur de Gestion</h3>
+        <div class="timeline-company" data-i18n="path1_company">SOGECC (Société de Gestion des Centres Commerciaux)</div>
+        <span class="timeline-date" data-i18n="path1_date">Janvier 2025 - Présent</span>
+        <ul>
+            <li data-i18n="path1_desc1"><strong>Pilotage du BFR :</strong> Optimisation du recouvrement en collaboration avec les équipes comptables et commerciales.</li>
+            <li data-i18n="path1_desc2"><strong>Reporting stratégique :</strong> Élaboration de KPI (balance âgée, encaissements, retards) et production de reportings hebdomadaires/mensuels pour la direction financière.</li>
+            <li data-i18n="path1_desc3"><strong>Data Visualisation :</strong> Conception de tableaux de bord dynamiques et automatisés (Power BI, Excel) pour piloter l'efficacité du recouvrement et le budget des charges communes.</li>
+            <li data-i18n="path1_desc4"><strong>Amélioration continue :</strong> Analyse des processus de recouvrement et mise en œuvre d'axes d'amélioration en coordination avec les parties prenantes.</li>
+        </ul>
+    </div>
 
-<div class="timeline-item">
-<h3 data-i18n="path1_company">SOGECC</h3>
-<p><strong data-i18n="path1_role">Contrôleur de Gestion Senior</strong></p>
-<p data-i18n="path1_desc">Reporting financier, KPI recouvrement, tableaux de bord décisionnels.</p>
-</div>
+    <!-- OZEOL -->
+    <div class="timeline-item">
+        <h3 data-i18n="path2_role">Contrôleur de Gestion</h3>
+        <div class="timeline-company" data-i18n="path2_company">Clearence Telesourcing Company (Ozeol), Sousse</div>
+        <span class="timeline-date" data-i18n="path2_date">Juillet 2024 - Décembre 2024</span>
+        <ul>
+            <li data-i18n="path2_desc1"><strong>Aide à la décision :</strong> Réalisation d'études analytiques spécifiques pour éclairer la direction et les responsables opérationnels sur la rentabilité.</li>
+            <li data-i18n="path2_desc2"><strong>Suivi de la performance :</strong> Mise en place d'un suivi permanent des indicateurs clés (taux d'annulation, respect des délais d'embarquement, productivité).</li>
+            <li data-i18n="path2_desc3"><strong>Reporting global :</strong> Élaboration de rapports périodiques complets (activité, transport, encours, négociation) et optimisation des rapports du système d'information.</li>
+            <li data-i18n="path2_desc4"><strong>Contrôle interne :</strong> Création d'outils de recoupement pour la détection d'anomalies (ex: ratio transport facturé/estimé).</li>
+        </ul>
+    </div>
 
-<div class="timeline-item">
-<h3 data-i18n="path2_company">Building Materials and Solutions</h3>
-<p><strong data-i18n="path2_role">Responsable Contrôle de Gestion & Responsable SI</strong></p>
-<p data-i18n="path2_desc">Production, stock, ERP, KPI et budgets.</p>
-</div>
+    <!-- TNS -->
+    <div class="timeline-item">
+        <h3 data-i18n="path3_role">Contrôleur de Gestion</h3>
+        <div class="timeline-company" data-i18n="path3_company">TNS Team Groupe Gocel, Tunis</div>
+        <span class="timeline-date" data-i18n="path3_date">Mars 2023 - Juin 2024</span>
+        <ul>
+            <li data-i18n="path3_desc1"><strong>Analyse financière :</strong> Suivi budgétaire et analyse de données comptables (balance, grand livre, chiffre d'affaires).</li>
+            <li data-i18n="path3_desc2"><strong>Suivi comptable :</strong> Contrôle des états financiers (Soldes Intermédiaires de Gestion, comptes de résultats, bilan) et présentation des résultats du groupe.</li>
+            <li data-i18n="path3_desc3"><strong>Outils décisionnels :</strong> Développement de tableaux de bord sur Excel et outils BI pour le suivi de l'activité.</li>
+        </ul>
+    </div>
 
-<div class="timeline-item">
-<h3 data-i18n="path3_company">El-Athir</h3>
-<p><strong data-i18n="path3_role">Contrôleur de Gestion</strong></p>
-<p data-i18n="path3_desc">Prix de revient, analyses financières et tableaux de bord.</p>
-</div>
+    <!-- BMS -->
+    <div class="timeline-item">
+        <h3 data-i18n="path4_role">Responsable des Systèmes d'Information</h3>
+        <div class="timeline-company" data-i18n="path4_company">Building Materials and Solutions (Derbigum Africa), Ben Arous</div>
+        <span class="timeline-date" data-i18n="path4_date">Mars 2020 - Mars 2023</span>
+        <ul>
+            <li data-i18n="path4_desc1"><strong>Gestion de production :</strong> Intégration des données, création/clôture des OF, calcul du Besoin Net et analyse de consommation des matières.</li>
+            <li data-i18n="path4_desc2"><strong>Supply Chain & Stock :</strong> Suivi des inventaires, analyse des écarts, approvisionnement (Local/Import) et suivi des commandes Export.</li>
+            <li data-i18n="path4_desc3"><strong>Contrôle de gestion industriel :</strong> Élaboration de tableaux de bord KPI (Vente, Stock, Production), calcul de prix de revient, analyse Pareto et gestion budgétaire.</li>
+            <li data-i18n="path4_desc4"><strong>Référentiel de données :</strong> Paramétrage des articles, clients, prix et centralisation des valorisations de ventes.</li>
+        </ul>
+    </div>
+
+    <!-- EL ATHIR -->
+    <div class="timeline-item">
+        <h3 data-i18n="path5_role">Contrôleur de Gestion Adjoint</h3>
+        <div class="timeline-company" data-i18n="path5_company">Compagnie Tunisienne de l’Electronique "EL ATHIR", Tunis</div>
+        <span class="timeline-date" data-i18n="path5_date">Février 2016 - Mars 2020</span>
+        <ul>
+            <li data-i18n="path5_desc1"><strong>Analyse des coûts :</strong> Calculs de prix de revient et homologation des coûts (fret, frais sur achats).</li>
+            <li data-i18n="path5_desc2"><strong>Pilotage commercial :</strong> Analyse approfondie du chiffre d'affaires (méthode Pareto) et élaboration de tableaux de bord de suivi des prix.</li>
+            <li data-i18n="path5_desc3"><strong>Gestion budgétaire :</strong> Contribution active au processus budgétaire de l'entreprise.</li>
+        </ul>
+    </div>
 
 </div>
 
@@ -953,27 +1065,27 @@ Cognos et Selligent.
 
 <div class="container">
 
-<h2 class="section-title" data-i18n="portfolio_title">Réalisations Power BI</h2>
+<h2 class="section-title reveal" data-i18n="portfolio_title">Réalisations Power BI</h2>
 
 <div class="portfolio-grid">
 
-<div class="portfolio-item">
+<div class="portfolio-item reveal">
 <img src="DB1.png" alt="Tableau de bord 1">
 </div>
 
-<div class="portfolio-item">
+<div class="portfolio-item reveal">
 <img src="DB2.png" alt="Tableau de bord 2">
 </div>
 
-<div class="portfolio-item">
+<div class="portfolio-item reveal">
 <img src="DB3.png" alt="Tableau de bord 3">
 </div>
 
-<div class="portfolio-item">
+<div class="portfolio-item reveal">
 <img src="DB4.png" alt="Tableau de bord 4">
 </div>
 
-<div class="portfolio-item">
+<div class="portfolio-item reveal">
 <img src="DB5.png" alt="Tableau de bord 5">
 </div>
 </div>
@@ -985,10 +1097,10 @@ Cognos et Selligent.
 <!-- NOUVELLE SECTION : CERTIFICATIONS -->
 <section id="certifications" class="certifications">
     <div class="container">
-        <h2 class="section-title" data-i18n="cert_title">Badge Formateur CNFCPP</h2>
+        <h2 class="section-title reveal" data-i18n="cert_title">Badge Formateur CNFCPP</h2>
         
         <div class="cert-container">
-            <div class="cert-card" onclick="openModal('modal-cert')">
+            <div class="cert-card reveal" onclick="openModal('modal-cert')">
                 <i class="fas fa-certificate cert-icon-large"></i>
                 <h3 data-i18n="cert_role">Formateur Agréé</h3>
                 <p data-i18n="cert_org">Certifié par le CNFCPP (Centre National de Formation Continue et de Promotion Professionnelle).</p>
@@ -1000,7 +1112,7 @@ Cognos et Selligent.
 
 <section id="cv">
 
-<div class="container">
+<div class="container reveal">
 
 <div class="cv-box">
 
@@ -1053,7 +1165,7 @@ Envoyer la demande
 
 <section id="contact">
 
-<div class="container">
+<div class="container reveal">
 
 <h2 class="section-title" data-i18n="contact_title">Contact</h2>
 
@@ -1165,7 +1277,7 @@ Tous droits réservés.
     </div>
 </div>
 
-<!-- Modale 3 : Contrôle de Gestion (Design à 3 colonnes) -->
+<!-- Modale 3 : Contrôle de Gestion -->
 <div id="modal-exp3" class="expertise-modal">
     <div class="modal-content">
         <span class="close-modal" onclick="closeModal('modal-exp3')">&times;</span>
@@ -1260,7 +1372,6 @@ Tous droits réservés.
             </div>
         </div>
 
-        <!-- L'image avec le nom exact corrigé -->
         <img src="Badge-CNFCPP.jpg" alt="Badge Formateur CNFCPP" style="width: 100%; max-width: 450px; border-radius: 10px; border: 1px solid #E2E8F0; margin: 0 auto 20px auto; display: block; pointer-events: none;">
         
         <h4 data-i18n="cert_role" style="color: var(--primary); font-size: 1.4rem; margin-bottom: 10px;">Formateur Agréé</h4>
@@ -1296,19 +1407,54 @@ const translations = {
     exp4_title: "Logiciels maîtrisés",
     exp4_text: "Power BI, Excel, SAP, Navision, QAD, ACD, Cognos et Selligent.",
     click_more: "Voir plus",
+    
     path_title: "Parcours Professionnel",
-    path1_company: "SOGECC",
-    path1_role: "Contrôleur de Gestion Senior",
-    path1_desc: "Reporting financier, KPI recouvrement, tableaux de bord décisionnels.",
-    path2_company: "Building Materials and Solutions",
-    path2_role: "Responsable Contrôle de Gestion & Responsable SI",
-    path2_desc: "Production, stock, ERP, KPI et budgets.",
-    path3_company: "El-Athir",
+    
+    /* SOGECC */
+    path1_role: "Contrôleur de Gestion",
+    path1_company: "SOGECC (Société de Gestion des Centres Commerciaux)",
+    path1_date: "Janvier 2025 - Présent",
+    path1_desc1: "<strong>Pilotage du BFR :</strong> Optimisation du recouvrement en collaboration avec les équipes comptables et commerciales.",
+    path1_desc2: "<strong>Reporting stratégique :</strong> Élaboration de KPI (balance âgée, encaissements, retards) et production de reportings hebdomadaires/mensuels pour la direction financière.",
+    path1_desc3: "<strong>Data Visualisation :</strong> Conception de tableaux de bord dynamiques et automatisés (Power BI, Excel) pour piloter l'efficacité du recouvrement et le budget des charges communes.",
+    path1_desc4: "<strong>Amélioration continue :</strong> Analyse des processus de recouvrement et mise en œuvre d'axes d'amélioration en coordination avec les parties prenantes.",
+    
+    /* OZEOL */
+    path2_role: "Contrôleur de Gestion",
+    path2_company: "Clearence Telesourcing Company (Ozeol), Sousse",
+    path2_date: "Juillet 2024 - Décembre 2024",
+    path2_desc1: "<strong>Aide à la décision :</strong> Réalisation d'études analytiques spécifiques pour éclairer la direction et les responsables opérationnels sur la rentabilité.",
+    path2_desc2: "<strong>Suivi de la performance :</strong> Mise en place d'un suivi permanent des indicateurs clés (taux d'annulation, respect des délais d'embarquement, productivité).",
+    path2_desc3: "<strong>Reporting global :</strong> Élaboration de rapports périodiques complets (activité, transport, encours, négociation) et optimisation des rapports du système d'information.",
+    path2_desc4: "<strong>Contrôle interne :</strong> Création d'outils de recoupement pour la détection d'anomalies (ex: ratio transport facturé/estimé).",
+    
+    /* TNS */
     path3_role: "Contrôleur de Gestion",
-    path3_desc: "Prix de revient, analyses financières et tableaux de bord.",
+    path3_company: "TNS Team Groupe Gocel, Tunis",
+    path3_date: "Mars 2023 - Juin 2024",
+    path3_desc1: "<strong>Analyse financière :</strong> Suivi budgétaire et analyse de données comptables (balance, grand livre, chiffre d'affaires).",
+    path3_desc2: "<strong>Suivi comptable :</strong> Contrôle des états financiers (Soldes Intermédiaires de Gestion, comptes de résultats, bilan) et présentation des résultats du groupe.",
+    path3_desc3: "<strong>Outils décisionnels :</strong> Développement de tableaux de bord sur Excel et outils BI pour le suivi de l'activité.",
+    
+    /* BMS */
+    path4_role: "Responsable des Systèmes d'Information",
+    path4_company: "Building Materials and Solutions (Derbigum Africa), Ben Arous",
+    path4_date: "Mars 2020 - Mars 2023",
+    path4_desc1: "<strong>Gestion de production :</strong> Intégration des données, création/clôture des OF, calcul du Besoin Net et analyse de consommation des matières.",
+    path4_desc2: "<strong>Supply Chain & Stock :</strong> Suivi des inventaires, analyse des écarts, approvisionnement (Local/Import) et suivi des commandes Export.",
+    path4_desc3: "<strong>Contrôle de gestion industriel :</strong> Élaboration de tableaux de bord KPI (Vente, Stock, Production), calcul de prix de revient, analyse Pareto et gestion budgétaire.",
+    path4_desc4: "<strong>Référentiel de données :</strong> Paramétrage des articles, clients, prix et centralisation des valorisations de ventes.",
+    
+    /* EL ATHIR */
+    path5_role: "Contrôleur de Gestion Adjoint",
+    path5_company: "Compagnie Tunisienne de l’Electronique \"EL ATHIR\", Tunis",
+    path5_date: "Février 2016 - Mars 2020",
+    path5_desc1: "<strong>Analyse des coûts :</strong> Calculs de prix de revient et homologation des coûts (fret, frais sur achats).",
+    path5_desc2: "<strong>Pilotage commercial :</strong> Analyse approfondie du chiffre d'affaires (méthode Pareto) et élaboration de tableaux de bord de suivi des prix.",
+    path5_desc3: "<strong>Gestion budgétaire :</strong> Contribution active au processus budgétaire de l'entreprise.",
+
     portfolio_title: "Réalisations Power BI",
     
-    /* Certifications FR */
     cert_title: "Badge Formateur CNFCPP",
     cert_role: "Formateur Agréé",
     cert_org: "Certifié par le CNFCPP (Centre National de Formation Continue et de Promotion Professionnelle).",
@@ -1329,7 +1475,6 @@ const translations = {
     badge_practical: "Pratique",
     badge_theoretical: "Théorique",
 
-    /* Modales FR */
     exp1_modal_title: "Pilotage de la performance opérationnelle",
     exp1_modal_desc: "Mise en place de tableaux de bord dynamiques pour piloter l'efficacité opérationnelle et financière.",
     exp1_modal_li1: "<strong>Définition</strong> et suivi de KPI stratégiques.",
@@ -1387,19 +1532,49 @@ const translations = {
     exp4_title: "Software skills",
     exp4_text: "Power BI, Excel, SAP, Navision, QAD, ACD, Cognos and Selligent.",
     click_more: "See more",
+    
     path_title: "Professional Career",
-    path1_company: "SOGECC",
-    path1_role: "Senior Management Controller",
-    path1_desc: "Financial reporting, collection KPIs, decision-making dashboards.",
-    path2_company: "Building Materials and Solutions",
-    path2_role: "Management Control Manager & IS Manager",
-    path2_desc: "Production, inventory, ERP, KPIs and budgets.",
-    path3_company: "El-Athir",
+    
+    path1_role: "Management Controller",
+    path1_company: "SOGECC (Shopping Centers Management Company)",
+    path1_date: "January 2025 - Present",
+    path1_desc1: "<strong>WCR Management:</strong> Optimization of collections in collaboration with accounting and sales teams.",
+    path1_desc2: "<strong>Strategic Reporting:</strong> Development of KPIs (aged balance, collections, delays) and production of weekly/monthly reports for financial management.",
+    path1_desc3: "<strong>Data Visualization:</strong> Design of dynamic and automated dashboards (Power BI, Excel) to steer collection efficiency and common charges budget.",
+    path1_desc4: "<strong>Continuous Improvement:</strong> Analysis of collection processes and implementation of improvement plans in coordination with stakeholders.",
+    
+    path2_role: "Management Controller",
+    path2_company: "Clearence Telesourcing Company (Ozeol), Sousse",
+    path2_date: "July 2024 - December 2024",
+    path2_desc1: "<strong>Decision Support:</strong> Conducting specific analytical studies to inform management and operational managers on profitability.",
+    path2_desc2: "<strong>Performance Monitoring:</strong> Implementation of permanent monitoring of key indicators (cancellation rate, compliance with boarding deadlines, productivity).",
+    path2_desc3: "<strong>Global Reporting:</strong> Preparation of comprehensive periodic reports (activity, transport, outstanding items, negotiation) and optimization of information system reports.",
+    path2_desc4: "<strong>Internal Control:</strong> Creation of cross-checking tools for anomaly detection (e.g., billed/estimated transport ratio).",
+    
     path3_role: "Management Controller",
-    path3_desc: "Cost price, financial analysis and dashboards.",
+    path3_company: "TNS Team Groupe Gocel, Tunis",
+    path3_date: "March 2023 - June 2024",
+    path3_desc1: "<strong>Financial Analysis:</strong> Budget monitoring and analysis of accounting data (trial balance, general ledger, turnover).",
+    path3_desc2: "<strong>Accounting Monitoring:</strong> Control of financial statements (Intermediate Management Balances, income statements, balance sheet) and presentation of group results.",
+    path3_desc3: "<strong>Decision-making Tools:</strong> Development of dashboards on Excel and BI tools for activity monitoring.",
+    
+    path4_role: "Information Systems Manager",
+    path4_company: "Building Materials and Solutions (Derbigum Africa), Ben Arous",
+    path4_date: "March 2020 - March 2023",
+    path4_desc1: "<strong>Production Management:</strong> Data integration, creation/closure of Manufacturing Orders, Net Requirement calculation and material consumption analysis.",
+    path4_desc2: "<strong>Supply Chain & Inventory:</strong> Inventory monitoring, variance analysis, procurement (Local/Import) and Export order tracking.",
+    path4_desc3: "<strong>Industrial Management Control:</strong> Development of KPI dashboards (Sales, Inventory, Production), cost price calculation, Pareto analysis and budget management.",
+    path4_desc4: "<strong>Data Repository:</strong> Configuration of items, customers, prices and centralization of sales valuations.",
+    
+    path5_role: "Assistant Management Controller",
+    path5_company: "Tunisian Electronics Company \"EL ATHIR\", Tunis",
+    path5_date: "February 2016 - March 2020",
+    path5_desc1: "<strong>Cost Analysis:</strong> Cost price calculations and cost approval (freight, purchase expenses).",
+    path5_desc2: "<strong>Commercial Steering:</strong> In-depth turnover analysis (Pareto method) and development of price monitoring dashboards.",
+    path5_desc3: "<strong>Budget Management:</strong> Active contribution to the company's budgeting process.",
+
     portfolio_title: "Power BI Portfolio",
     
-    /* Certifications EN */
     cert_title: "CNFCPP Trainer Badge",
     cert_role: "Certified Trainer",
     cert_org: "Certified by CNFCPP (National Center for Continuing Training and Professional Promotion).",
@@ -1420,7 +1595,6 @@ const translations = {
     badge_practical: "Practical",
     badge_theoretical: "Theoretical",
 
-    /* Modales EN */
     exp1_modal_title: "Operational Performance Management",
     exp1_modal_desc: "Implementation of dynamic dashboards to steer operational and financial efficiency.",
     exp1_modal_li1: "<strong>Definition</strong> and monitoring of strategic KPIs.",
@@ -1478,19 +1652,49 @@ const translations = {
     exp4_title: "البرامج المتقنة",
     exp4_text: "Power BI، Excel، SAP، Navision، QAD، ACD، Cognos وSelligent.",
     click_more: "عرض المزيد",
+    
     path_title: "المسار المهني",
-    path1_company: "SOGECC",
-    path1_role: "مراقب تصرف أول",
-    path1_desc: "التقارير المالية، مؤشرات التحصيل، لوحات القيادة.",
-    path2_company: "Building Materials and Solutions",
-    path2_role: "مسؤول مراقبة التصرف ومسؤول أنظمة المعلومات",
-    path2_desc: "الإنتاج، المخزون، ERP، مؤشرات الأداء والميزانيات.",
-    path3_company: "El-Athir",
+    
+    path1_role: "مراقب تصرف",
+    path1_company: "SOGECC (شركة إدارة المراكز التجارية)",
+    path1_date: "جانفي 2025 - الآن",
+    path1_desc1: "<strong>إدارة رأس المال العامل:</strong> تحسين التحصيل بالتعاون مع الفرق المحاسبية والتجارية.",
+    path1_desc2: "<strong>التقارير الاستراتيجية:</strong> تطوير مؤشرات الأداء (الميزان العمري، التحصيلات، التأخيرات) وإنتاج تقارير أسبوعية/شهرية للإدارة المالية.",
+    path1_desc3: "<strong>عرض البيانات:</strong> تصميم لوحات قيادة ديناميكية ومؤتمتة (Power BI, Excel) لتوجيه كفاءة التحصيل وميزانية النفقات المشتركة.",
+    path1_desc4: "<strong>التحسين المستمر:</strong> تحليل عمليات التحصيل وتنفيذ خطط التحسين بالتنسيق مع أصحاب المصلحة.",
+    
+    path2_role: "مراقب تصرف",
+    path2_company: "Clearence Telesourcing Company (Ozeol)، سوسة",
+    path2_date: "جويلية 2024 - ديسمبر 2024",
+    path2_desc1: "<strong>دعم القرار:</strong> إجراء دراسات تحليلية محددة لإبلاغ الإدارة والمسؤولين التشغيليين بالربحية.",
+    path2_desc2: "<strong>متابعة الأداء:</strong> تنفيذ مراقبة دائمة للمؤشرات الرئيسية (معدل الإلغاء، الامتثال لمواعيد الصعود، الإنتاجية).",
+    path2_desc3: "<strong>التقارير الشاملة:</strong> إعداد تقارير دورية شاملة (النشاط، النقل، المعلقات، التفاوض) وتحسين تقارير نظام المعلومات.",
+    path2_desc4: "<strong>الرقابة الداخلية:</strong> إنشاء أدوات تدقيق للكشف عن الحالات الشاذة (مثل نسبة النقل المفوتر/المقدر).",
+    
     path3_role: "مراقب تصرف",
-    path3_desc: "تكلفة الإنتاج، التحليلات المالية ولوحات القيادة.",
+    path3_company: "TNS Team Groupe Gocel، تونس",
+    path3_date: "مارس 2023 - جوان 2024",
+    path3_desc1: "<strong>التحليل المالي:</strong> متابعة الميزانية وتحليل البيانات المحاسبية (الميزان، دفتر اليومية، الإيرادات).",
+    path3_desc2: "<strong>المتابعة المحاسبية:</strong> مراقبة البيانات المالية (أرصدة التسيير الوسيطة، حسابات النتائج، الميزانية العمومية) وعرض نتائج المجموعة.",
+    path3_desc3: "<strong>أدوات القرار:</strong> تطوير لوحات القيادة على Excel وأدوات تحليل الأعمال لمتابعة النشاط.",
+    
+    path4_role: "مسؤول أنظمة المعلومات",
+    path4_company: "Building Materials and Solutions (Derbigum Africa)، بن عروس",
+    path4_date: "مارس 2020 - مارس 2023",
+    path4_desc1: "<strong>إدارة الإنتاج:</strong> دمج البيانات، إنشاء/إغلاق أوامر التصنيع، حساب الاحتياجات الصافية وتحليل استهلاك المواد.",
+    path4_desc2: "<strong>سلسلة التوريد والمخزون:</strong> متابعة المخزون، تحليل الفروقات، المشتريات (المحلية/المستوردة) وتتبع أوامر التصدير.",
+    path4_desc3: "<strong>مراقبة التصرف الصناعي:</strong> تطوير لوحات مؤشرات الأداء (المبيعات، المخزون، الإنتاج)، حساب تكلفة الإنتاج، تحليل باريتو وإدارة الميزانية.",
+    path4_desc4: "<strong>مرجع البيانات:</strong> إعداد الأصناف والعملاء والأسعار ومركزية تقييم المبيعات.",
+    
+    path5_role: "مراقب تصرف مساعد",
+    path5_company: "الشركة التونسية للإلكترونيات \"الأثير\"، تونس",
+    path5_date: "فيفري 2016 - مارس 2020",
+    path5_desc1: "<strong>تحليل التكاليف:</strong> حسابات تكلفة الإنتاج والمصادقة على التكاليف (الشحن، مصاريف الشراء).",
+    path5_desc2: "<strong>القيادة التجارية:</strong> تحليل معمق للإيرادات (طريقة باريتو) وتطوير لوحات متابعة الأسعار.",
+    path5_desc3: "<strong>إدارة الميزانية:</strong> مساهمة نشطة في عملية إعداد ميزانية الشركة.",
+
     portfolio_title: "إنجازات Power BI",
     
-    /* Certifications AR */
     cert_title: "شارة مكوّن معتمد CNFCPP",
     cert_role: "مكوّن معتمد",
     cert_org: "معتمد من المركز الوطني للتكوين المستمر والترقية المهنية (CNFCPP).",
@@ -1511,7 +1715,6 @@ const translations = {
     badge_practical: "عملي",
     badge_theoretical: "نظري",
 
-    /* Modales AR */
     exp1_modal_title: "قيادة الأداء التشغيلية",
     exp1_modal_desc: "إنشاء لوحات قيادة ديناميكية لتوجيه الكفاءة التشغيلية والمالية.",
     exp1_modal_li1: "<strong>تحديد</strong> ومتابعة مؤشرات الأداء الاستراتيجية.",
@@ -1552,16 +1755,13 @@ const translations = {
 function applyLanguage(lang){
   const dict = translations[lang] || translations.fr;
 
-  // Direction et langue du document
   document.documentElement.lang = lang;
   document.documentElement.dir = (lang === "ar") ? "rtl" : "ltr";
 
-  // Remplacement des textes
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n");
     if (dict[key] !== undefined) {
       
-      // Cas particulier pour le Hero Title (gestion du sous-titre sur 2 lignes)
       if (key === "hero_title") {
         const parts = dict[key].split('\n');
         if (parts.length > 1) {
@@ -1570,7 +1770,6 @@ function applyLanguage(lang){
             el.innerHTML = dict[key];
         }
       } 
-      // Cas standard
       else {
         el.innerHTML = dict[key].replace(/\n/g, "<br>");
       }
@@ -1578,7 +1777,6 @@ function applyLanguage(lang){
     }
   });
 
-  // Remplacement des placeholders
   document.querySelectorAll("[data-i18n-ph]").forEach(el => {
     const key = el.getAttribute("data-i18n-ph");
     if (dict[key] !== undefined) {
@@ -1586,12 +1784,10 @@ function applyLanguage(lang){
     }
   });
 
-  // Bouton actif
   document.querySelectorAll(".lang-btn").forEach(b => {
     b.classList.toggle("active", b.dataset.lang === lang);
   });
 
-  // Mémorisation
   try { localStorage.setItem("siteLang", lang); } catch(e){}
 }
 
@@ -1608,9 +1804,27 @@ document.addEventListener("DOMContentLoaded", () => {
     saved = urlLang || localStorage.getItem("siteLang") || "fr";
   } catch(e){}
   applyLanguage(saved);
+
+  // Animation au défilement
+  const reveals = document.querySelectorAll('.reveal');
+
+  function revealOnScroll() {
+    const windowHeight = window.innerHeight;
+    const elementVisible = 100;
+
+    reveals.forEach((reveal) => {
+      const elementTop = reveal.getBoundingClientRect().top;
+      if (elementTop < windowHeight - elementVisible) {
+        reveal.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', revealOnScroll);
+  revealOnScroll(); 
 });
 
-/* ===== MODAL SCRIPT (EXPERTISE) ===== */
+/* ===== MODAL SCRIPT ===== */
 function openModal(id) {
     document.getElementById(id).classList.add("active");
 }
@@ -1619,7 +1833,6 @@ function closeModal(id) {
     document.getElementById(id).classList.remove("active");
 }
 
-// Fermer la modale en cliquant en dehors du contenu
 document.querySelectorAll('.expertise-modal').forEach(modal => {
     modal.addEventListener('click', function(e) {
         if (e.target === this) {
@@ -1628,7 +1841,6 @@ document.querySelectorAll('.expertise-modal').forEach(modal => {
     });
 });
 
-// Fermer avec la touche Échap
 document.addEventListener("keydown", function(e) {
   if(e.key === "Escape") {
     document.querySelectorAll('.expertise-modal').forEach(modal => {
@@ -1652,7 +1864,6 @@ portfolioImages.forEach(img => {
   });
 });
 
-// Fermer l'aperçu en cliquant n'importe où sur le fond
 lightbox.addEventListener("click", function() {
   lightbox.classList.remove("active");
 });
