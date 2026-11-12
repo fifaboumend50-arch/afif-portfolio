@@ -398,7 +398,7 @@ section{
     top: 0;
 }
 
-/* PORTFOLIO */
+/* PORTFOLIO (POWER BI & EXCEL) */
 
 .portfolio-grid{
     display:grid;
@@ -1094,6 +1094,24 @@ Cognos et Selligent.
 
 </section>
 
+<!-- NOUVELLE SECTION : RÉALISATIONS EXCEL -->
+<section id="excel" style="background-color: var(--light); padding-top: 0;">
+    <div class="container" style="padding-top: 80px;">
+        <h2 class="section-title reveal" data-i18n="excel_title">Réalisations Excel</h2>
+        
+        <div class="portfolio-grid">
+            <div class="portfolio-item reveal">
+                <!-- Remplacez par le nom de votre image -->
+                <img src="Excell1.png" alt="Tableau de bord Excel 1">
+            </div>
+            <div class="portfolio-item reveal">
+                <!-- Remplacez par le nom de votre image -->
+                <img src="Excell2.png" alt="Tableau de bord Excel 2">
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- NOUVELLE SECTION : CERTIFICATIONS -->
 <section id="certifications" class="certifications">
     <div class="container">
@@ -1454,6 +1472,7 @@ const translations = {
     path5_desc3: "<strong>Gestion budgétaire :</strong> Contribution active au processus budgétaire de l'entreprise.",
 
     portfolio_title: "Réalisations Power BI",
+    excel_title: "Réalisations Excel",
     
     cert_title: "Badge Formateur CNFCPP",
     cert_role: "Formateur Agréé",
@@ -1574,6 +1593,7 @@ const translations = {
     path5_desc3: "<strong>Budget Management:</strong> Active contribution to the company's budgeting process.",
 
     portfolio_title: "Power BI Portfolio",
+    excel_title: "Excel Portfolio",
     
     cert_title: "CNFCPP Trainer Badge",
     cert_role: "Certified Trainer",
@@ -1694,6 +1714,7 @@ const translations = {
     path5_desc3: "<strong>إدارة الميزانية:</strong> مساهمة نشطة في عملية إعداد ميزانية الشركة.",
 
     portfolio_title: "إنجازات Power BI",
+    excel_title: "إنجازات Excel",
     
     cert_title: "شارة مكوّن معتمد CNFCPP",
     cert_role: "مكوّن معتمد",
@@ -1855,9 +1876,9 @@ document.addEventListener("keydown", function(e) {
 /* ===== LIGHTBOX SCRIPT ===== */
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
-const portfolioImages = document.querySelectorAll(".portfolio-item img");
+const allImages = document.querySelectorAll(".portfolio-item img"); // Cible toutes les images
 
-portfolioImages.forEach(img => {
+allImages.forEach(img => {
   img.addEventListener("click", function() {
     lightboxImg.src = this.src;
     lightbox.classList.add("active");
