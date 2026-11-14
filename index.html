@@ -425,6 +425,34 @@ section{
     transform: scale(1.08);
 }
 
+/* SECTION VIDEO */
+
+.video-section {
+    background-color: var(--light);
+    padding-bottom: 0;
+}
+
+.video-container {
+    max-width: 900px;
+    margin: 0 auto 50px auto;
+    position: relative;
+    padding-bottom: 56.25%; /* Ratio 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    background: #000;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
 /* CERTIFICATIONS */
 
 .certifications{
@@ -1061,9 +1089,20 @@ Cognos et Selligent.
 </div>
 </section>
 
-<section id="realisations">
+<!-- SECTION : DÉMONSTRATION POWER BI -->
+<section id="video" class="video-section">
+    <div class="container reveal">
+        <h2 class="section-title" data-i18n="video_title">Démonstration Power BI</h2>
+        <div class="video-container">
+            <!-- Intégration de votre vidéo YouTube -->
+            <iframe src="https://www.youtube.com/embed/fFDk45XM4jA" title="Démonstration Power BI" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+</section>
 
-<div class="container">
+<section id="realisations" style="padding-top: 0;">
+
+<div class="container" style="padding-top: 80px;">
 
 <h2 class="section-title reveal" data-i18n="portfolio_title">Réalisations Power BI</h2>
 
@@ -1094,18 +1133,18 @@ Cognos et Selligent.
 
 </section>
 
-<!-- NOUVELLE SECTION : RÉALISATIONS EXCEL -->
+<!-- SECTION : RÉALISATIONS EXCEL -->
 <section id="excel" style="background-color: var(--light); padding-top: 0;">
     <div class="container" style="padding-top: 80px;">
         <h2 class="section-title reveal" data-i18n="excel_title">Réalisations Excel</h2>
         
         <div class="portfolio-grid">
             <div class="portfolio-item reveal">
-                <!-- Remplacez par le nom de votre image -->
+                <!-- Noms exacts de vos fichiers -->
                 <img src="Excell1.png" alt="Tableau de bord Excel 1">
             </div>
             <div class="portfolio-item reveal">
-                <!-- Remplacez par le nom de votre image -->
+                <!-- Noms exacts de vos fichiers -->
                 <img src="Excell2.png" alt="Tableau de bord Excel 2">
             </div>
         </div>
@@ -1413,6 +1452,9 @@ const translations = {
     hero_desc: "Je transforme les données complexes en tableaux de bord stratégiques interactifs et en <span class='highlight'>décisions pertinentes</span> pour accélérer la performance.",
     hero_btn1: "Mon parcours",
     hero_btn2: "Demander l'accès au CV",
+    
+    video_title: "Démonstration Power BI",
+    
     about_title: "À propos",
     about_text: "Professionnel expérimenté dans le pilotage de la performance, l'analyse des données, le contrôle de gestion et la Business Intelligence. Mon expertise repose sur la conception de tableaux de bord décisionnels, l'automatisation du reporting et l'accompagnement des projets d'amélioration continue.",
     expertise_title: "Domaines d'Expertise",
@@ -1539,6 +1581,9 @@ const translations = {
     hero_desc: "I turn complex data into interactive strategic dashboards and <span class='highlight'>insightful decisions</span> to accelerate performance.",
     hero_btn1: "My career",
     hero_btn2: "Request CV access",
+    
+    video_title: "Power BI Demonstration",
+    
     about_title: "About",
     about_text: "Experienced professional in performance management, data analysis, management control and Business Intelligence. My expertise lies in designing decision-making dashboards, automating reporting and supporting continuous improvement projects.",
     expertise_title: "Areas of Expertise",
@@ -1660,6 +1705,9 @@ const translations = {
     hero_desc: "أحوّل البيانات المعقدة إلى لوحات قيادة استراتيجية تفاعلية و<span class='highlight'>قرارات رشيدة</span> لتسريع الأداء.",
     hero_btn1: "مساري المهني",
     hero_btn2: "طلب الوصول إلى السيرة الذاتية",
+    
+    video_title: "عرض توضيحي Power BI",
+    
     about_title: "نبذة عني",
     about_text: "محترف ذو خبرة في قيادة الأداء وتحليل البيانات ومراقبة التصرف وتحليل الأعمال. تقوم خبرتي على تصميم لوحات القيادة واتخاذ القرارات وأتمتة التقارير ومواكبة مشاريع التحسين المستمر.",
     expertise_title: "مجالات الخبرة",
