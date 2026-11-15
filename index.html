@@ -930,7 +930,8 @@ html[dir="rtl"] .card:hover .click-hint {
 
 <div class="hero-content">
 
-<img src="Photo.jpg" alt="Photo">
+<!-- Ajout de loading="lazy" sur la photo de profil -->
+<img src="Photo.jpg" alt="Photo" loading="lazy" decoding="async">
 
 <h1 data-i18n="hero_name">Afif Boumendil</h1>
 
@@ -1108,24 +1109,25 @@ Cognos et Selligent.
 
 <div class="portfolio-grid">
 
+<!-- Ajout de loading="lazy" sur toutes les images du portfolio -->
 <div class="portfolio-item reveal">
-<img src="DB1.png" alt="Tableau de bord 1">
+<img src="DB1.png" alt="Tableau de bord 1" loading="lazy" decoding="async">
 </div>
 
 <div class="portfolio-item reveal">
-<img src="DB2.png" alt="Tableau de bord 2">
+<img src="DB2.png" alt="Tableau de bord 2" loading="lazy" decoding="async">
 </div>
 
 <div class="portfolio-item reveal">
-<img src="DB3.png" alt="Tableau de bord 3">
+<img src="DB3.png" alt="Tableau de bord 3" loading="lazy" decoding="async">
 </div>
 
 <div class="portfolio-item reveal">
-<img src="DB4.png" alt="Tableau de bord 4">
+<img src="DB4.png" alt="Tableau de bord 4" loading="lazy" decoding="async">
 </div>
 
 <div class="portfolio-item reveal">
-<img src="DB5.png" alt="Tableau de bord 5">
+<img src="DB5.png" alt="Tableau de bord 5" loading="lazy" decoding="async">
 </div>
 </div>
 
@@ -1140,12 +1142,10 @@ Cognos et Selligent.
         
         <div class="portfolio-grid">
             <div class="portfolio-item reveal">
-                <!-- Noms exacts de vos fichiers -->
-                <img src="Excell1.png" alt="Tableau de bord Excel 1">
+                <img src="Excell1.png" alt="Tableau de bord Excel 1" loading="lazy" decoding="async">
             </div>
             <div class="portfolio-item reveal">
-                <!-- Noms exacts de vos fichiers -->
-                <img src="Excell2.png" alt="Tableau de bord Excel 2">
+                <img src="Excell2.png" alt="Tableau de bord Excel 2" loading="lazy" decoding="async">
             </div>
         </div>
     </div>
@@ -1429,7 +1429,8 @@ Tous droits réservés.
             </div>
         </div>
 
-        <img src="Badge-CNFCPP.jpg" alt="Badge Formateur CNFCPP" style="width: 100%; max-width: 450px; border-radius: 10px; border: 1px solid #E2E8F0; margin: 0 auto 20px auto; display: block; pointer-events: none;">
+        <!-- Ajout du lazy loading sur l'image du badge -->
+        <img src="Badge-CNFCPP.jpg" alt="Badge Formateur CNFCPP" loading="lazy" decoding="async" style="width: 100%; max-width: 450px; border-radius: 10px; border: 1px solid #E2E8F0; margin: 0 auto 20px auto; display: block; pointer-events: none;">
         
         <h4 data-i18n="cert_role" style="color: var(--primary); font-size: 1.4rem; margin-bottom: 10px;">Formateur Agréé</h4>
         <p data-i18n="cert_org" style="color: #475569; font-size: 1.1rem;">Certifié par le CNFCPP (Centre National de Formation Continue et de Promotion Professionnelle).</p>
@@ -1928,6 +1929,7 @@ const allImages = document.querySelectorAll(".portfolio-item img"); // Cible tou
 
 allImages.forEach(img => {
   img.addEventListener("click", function() {
+    // Optimisation : on s'assure que l'image est chargée avant de l'afficher
     lightboxImg.src = this.src;
     lightbox.classList.add("active");
   });
